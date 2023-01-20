@@ -8,9 +8,9 @@ assignees: ''
 ---
 
 ### Definition of Done
- - [] Branding
- - [] Accessibility
- - [] Responsiveness
+- [ ] Branding
+- [ ] Accessibility
+- [ ] Responsiveness
 
 ### Acceptance Criteria
- - [] Neve fill this out
+- [ ] Neve fill this out
