@@ -10,7 +10,7 @@ assignees: ''
 ### Definition of Done
 #### Code Quality
 - [ ] General commenting where any more complicated algorithms are present 
-- [ ] Code style following google guidelines [](https://google.github.io/styleguide/htmlcssguide.html) 
+- [ ] Code style following [google guidelines](https://google.github.io/styleguide/htmlcssguide.html) 
 #### Style
 - [ ] White and Green main style 
 - [ ] Clear mid-heavy font
