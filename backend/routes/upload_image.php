@@ -1,13 +1,17 @@
 <?php
 /**
+ * Handler of uploading images to the CDN
  * @param array $_FILES['image'] - uploaded image
  * @param array $_GET['image_owner'] - image owner
  * @return array
  */
 function callback() {
+    // Hash the owner details to store in image metadata
     $image_owner = "LGL_Admin";
     if (isset($_GET['image_owner']))
         $image_owner = "LGL_" . sha1("LGL_IMAGE_OWNER_" . $_GET['image_owner']);
+
+    // Sanity checks of the file, then upload to CF with relevant error checks at each stage
     $rtn = [];
     if ($_FILES["image"]['error'] === UPLOAD_ERR_OK) {
         $check = getimagesize($_FILES["image"]["tmp_name"]);
