@@ -1,0 +1,14 @@
+body {
+    /*background-color: #3E5641;*/
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+.nav-bar {
+    background-color: #3E5641;
+    color: #FFFFFF;
+}
+
+.button {
+    background-color: #A05C7B;
+    color: #FFFFFF;
+}
