@@ -1,8 +1,19 @@
 body {
-    background-color: 3E5641;
+    background-color: #3E5641;
+    font-family: Helvetica, Arial, sans-serif;
 }
 
- {
-
+.navbar {
+    background-color: #9EA93F;
+    color: #FFFFFF;
 }
 
+.button {
+    background-color: #A05C7B;
+    color: #FFFFFF;
+}
+
+.collapse {
+    background-color: #A05C7B;
+    color: #FFFFFF;
+}
