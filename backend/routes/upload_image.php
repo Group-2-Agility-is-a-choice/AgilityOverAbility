@@ -18,9 +18,10 @@ function callback() {
         if ($check !== false) {
 
             $curl = curl_init();
-            $cfAPIKey = file_get_contents("_secret_CF_Key");
+            // Pull CF credentials from secret file, first line api key, second account id, with a LF in between.
+            $cfAPIKey = explode("\n", file_get_contents("_secret_CF_Key"));
             $curl_opts = array(
-                CURLOPT_URL => 'https://api.cloudflare.com/client/v4/accounts/d187d2dd448e157d2832b352d6727a95/images/v1',
+                CURLOPT_URL => 'https://api.cloudflare.com/client/v4/accounts/' . $cfAPIKey[1] . '/images/v1',
                 CURLOPT_RETURNTRANSFER => true,
                 CURLOPT_ENCODING => '',
                 CURLOPT_MAXREDIRS => 10,
@@ -30,7 +31,7 @@ function callback() {
                 CURLOPT_CUSTOMREQUEST => 'POST',
                 CURLOPT_POSTFIELDS => array('file'=> new CURLFILE($_FILES["image"]["tmp_name"]),'metadata' => '{"owner":"LGL_Admin"}'),
                 CURLOPT_HTTPHEADER => array(
-                    'Authorization: Bearer ' . $cfAPIKey
+                    'Authorization: Bearer ' . $cfAPIKey[0]
                 ),
             );
             curl_setopt_array($curl, $curl_opts);
