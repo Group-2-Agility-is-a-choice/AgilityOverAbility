@@ -40,6 +40,7 @@ function callback() {
 
                 $response = curl_exec($curl);
                 $response = json_decode($response);
+                sort($response->result->variants);
 
                 if ($response->success) {
                     http_response_code(200);
@@ -50,7 +51,7 @@ function callback() {
                             "uploaded_mime" => $check["mime"],
                             "uploaded_resolution" => [$check[0], $check[1]],
                             "uploaded_bits" => $check["bits"],
-                            "uploaded_channels" => $check["channels"],
+                            "uploaded_channels" => $check["channels"] ?? 0,
                             "uploaded_size" => $_FILES["image"]["size"]
                         ],
                         "CDN" => [
