@@ -2,18 +2,18 @@ function getRecipe(id) {
     fetch("backend?getFullRecipe&RecipeID=" + id).then((rtn)=>{
         rtn.json().then((data)=>{
             // display the recipe name
-            document.getElementById("title").innerHTML = data.Name;
+            document.getElementById("title").innerHTML = data.recipeDetails[0].Name;
             // display spice level
-            document.getElementById("spice").innerHTML = `Spice : ${data.SpiceLevel}`;
+            document.getElementById("spice").innerHTML = `Spice : ${data.recipeDetails[0].SpiceLevel}`;
             // display method
-            document.getElementById("method").innerHTML = data.Instructions;
+            document.getElementById("method").innerHTML = data.recipeDetails[0].Instructions;
             // display serves
-            document.getElementById("serves").innerHTML = `Serves : ${data.ServingAmount}`;
+            document.getElementById("serves").innerHTML = `Serves : ${data.recipeDetails[0].ServingAmount}`;
             // display image
-            document.getElementById("img").src = data.Image;
+            document.getElementById("img").src = data.recipeDetails[0].Image;
             let ingredientsList = "<ul>";
             // display ingredients
-            data.ingredients.foreach((item)=>{
+            data.ingredients.forEach((item)=>{
                 ingredientsList += `<li>${item.Name} - ${item.Quantity} ${item.Unit}</li>`;
             });
             ingredientsList += "</ul>";
