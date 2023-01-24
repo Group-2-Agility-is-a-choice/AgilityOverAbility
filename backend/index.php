@@ -1,4 +1,5 @@
 <?php
+include "inc.php";
 // Search through recognised routes - run callback
 $_routes = glob("./routes/*.php");
 http_response_code(404);
