@@ -2,12 +2,10 @@ body {
     /*background-color: #3E5641;*/
     font-family: Helvetica, Arial, sans-serif;
 }
-
-.nav-bar {
+.nav-bar{
     background-color: #3E5641;
     color: #FFFFFF;
 }
-
 .button {
     background-color: #A05C7B;
     color: #FFFFFF;
@@ -15,4 +13,10 @@ body {
 
 .sizing {
     font-size:20pt;
+}
+
+@media only screen and (max-width: 750px){
+    .sizing{
+        font-size: 13pt;
+    }
 }
