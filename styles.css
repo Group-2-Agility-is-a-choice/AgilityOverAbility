@@ -1,0 +1,29 @@
+body {
+    /*background-color: #3E5641;*/
+    font-family: Helvetica, Arial, sans-serif;
+    
+}
+
+a {
+    color: #474747;
+    font-size: 15pt;
+}
+.nav-bar{
+    background-color: #3E5641;
+    color: #FFFFFF;
+    font-family: 'Bungee Inline', cursive;
+}
+.button {
+    background-color: #A05C7B;
+    color: #FFFFFF;
+}
+
+.sizing {
+    font-size:20pt;
+}
+
+@media only screen and (max-width: 800px){
+    .sizing{
+        font-size: 12pt;
+    }
+}
