@@ -38,6 +38,13 @@
           <div class="row">
             <div class="col-md-8 col-sm-12">
 
+              <div class="input-group mb-3" style="max-width:800px">
+              <input type="text" class="form-control border border-success" placeholder="Search" aria-label="Searchbar" aria-describedby="searchbar">
+              <div class="input-group-append">
+                <button class="btn btn-success" type="search" id="search">Search</button>
+              </div>
+            </div>
+
               <div class="card mb-3 border border-success" style="max-width: 800px;">
                 <div class="row no-gutters">
                   <div class="col-md-4">
@@ -46,7 +53,7 @@
                   <div class="col-md-8">
                     <div class="card-body">
                       <h4 class="card-title">Card title</h4>
-                      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                      <p class="card-text mt-4"><small class="text-muted">Spice: <b class="text-danger">🌶🌶</b><b>🌶</b></small></p>
                       <p class="card-text"><small class="text-muted">Serves: 4</small></p>
                     </div>
                   </div>
@@ -57,8 +64,16 @@
             </div>
             <div class="col-1"> <!--divids columns--></div>
             <div class="col-md col-sm-12 border border-success">
-              <p>sidebar for search, possibily checklist</p>
-            </div>
+              <p  class="m-2">Search by ingredients:</p>
+
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="ingredient1">
+                <label class="form-check-label" for="ingredient1">
+                  Ingredient1
+                </label>
+              </div>
+
+            <button type="button" class="btn btn-success mt-3">Search</button>
           </div>
         </div>
       </div>
