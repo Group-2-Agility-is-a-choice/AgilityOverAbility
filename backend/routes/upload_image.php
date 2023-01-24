@@ -8,12 +8,13 @@
  */
 function callback() {
     $rtn = [];
+    // Pull CF credentials from secret file, first line api key, second account id, with a LF in between.
     $cfAPIKey = explode("\n", file_get_contents("_secret_CF_Key"));
     if ($_GET['CDN_key'] === $cfAPIKey[2]) {
         // Hash the owner details to store in image metadata
         $image_owner = "LGL_Admin";
         if (isset($_GET['image_owner']))
-        $image_owner = "LGL_" . sha1("LGL_IMAGE_OWNER_" . $_GET['image_owner']);
+            $image_owner = "LGL_" . sha1("LGL_IMAGE_OWNER_" . $_GET['image_owner']);
 
         // Sanity checks of the file, then upload to CF with relevant error checks at each stage
         if ($_FILES["image"]['error'] === UPLOAD_ERR_OK) {
@@ -21,7 +22,6 @@ function callback() {
             if ($check !== false) {
 
                 $curl = curl_init();
-                // Pull CF credentials from secret file, first line api key, second account id, with a LF in between.
                 $curl_opts = array(
                     CURLOPT_URL => 'https://api.cloudflare.com/client/v4/accounts/' . $cfAPIKey[1] . '/images/v1',
                     CURLOPT_RETURNTRANSFER => true,
