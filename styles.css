@@ -5,6 +5,7 @@ body {
 .nav-bar{
     background-color: #3E5641;
     color: #FFFFFF;
+    font-family: 'Bungee Inline', cursive;
 }
 .button {
     background-color: #A05C7B;
@@ -15,8 +16,8 @@ body {
     font-size:20pt;
 }
 
-@media only screen and (max-width: 750px){
+@media only screen and (max-width: 800px){
     .sizing{
-        font-size: 13pt;
+        font-size: 12pt;
     }
 }
