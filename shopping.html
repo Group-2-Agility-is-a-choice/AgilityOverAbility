@@ -41,21 +41,24 @@
             <div class="col-md col-sm-12 border border-success">
               <h1 class="text-center">Shopping List</h1>
 
-              <div class="form-check m-3" onclick="checkedBox(this)">
-                <input class="form-check-input" type="checkbox" value="" id="ingredient1">
-                <label class="form-check-label" for="ingredient1">
-                  5 - bananas
-                </label>
-              </div>
-              <div class="form-check m-3" onclick="checkedBox(this)">
-                <input class="form-check-input" type="checkbox" value="" id="ingredient2">
-                <label class="form-check-label" for="ingredient2">
-                  2 - pineapples
-                </label>
+              <div id="shopping">
+                <div class="form-check m-3" onclick="checkedBox(this)">
+                  <input class="form-check-input" type="checkbox" value="" id="ingredient1">
+                  <label class="form-check-label" for="ingredient1">
+                    5 - bananas
+                  </label>
+                </div>
+                <div class="form-check m-3" onclick="checkedBox(this)">
+                  <input class="form-check-input" type="checkbox" value="" id="ingredient2">
+                  <label class="form-check-label" for="ingredient2">
+                    2 - pineapples
+                  </label>
+                </div>
               </div>
 
-              <button type="button" class="btn btn-success m-3">Edit</button>
-              <button type="button" class="btn btn-danger m-3">Remove</button>
+              <button type="button" onclick="" class="btn btn-success m-3">Edit</button> <!--Edits items-->
+              <button type="button" onclick="" class="btn btn-danger m-3">Remove</button> <!--Removes selected items-->
+              <button type="button" onclick="empty()" class="btn btn-danger m-3">Empty</button> <!--Deletes all-->
             </div>
             <div class="col-lg-3 col-md-2 col-sm-12"></div>
           </div>
@@ -93,6 +96,10 @@
 
     function checkedBox(cb) {
       cb.classList.toggle('checked-item');
+    }
+    function empty() {
+      var list = document.getElementById('shopping');
+      list.remove();
     }
 
     //https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox
