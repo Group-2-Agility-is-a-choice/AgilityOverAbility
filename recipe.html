@@ -104,13 +104,11 @@
 
     function populateStorage() {
       localStorage.clear();
-      localStorage.setItem('item1', 'bananas');
-      localStorage.setItem('amount1', '5');
-      localStorage.setItem('unit1', 'x');
-      let item1 = localStorage.getItem('item1');
-      let amount1 = localStorage.getItem('amount1');
-      let unit1 = localStorage.getItem('unit1');
-      alert(amount1+unit1+" "+item1);
+      console.log(JSON.stringify({1:['bananas',5,'x'],2:['flour',100,'mg']}));
+      localStorage.setItem('storage',`{"1":["bananas",5,"x"],"2":["flour",100,"mg"]}`); //1 is number, banana is item, 5 is amount, x is unit
+      //localStorage.setItem('storage','test');
+      let storage = localStorage.getItem('storage');
+      alert(storage);
     }
 
   </script>

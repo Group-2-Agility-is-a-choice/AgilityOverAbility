@@ -42,19 +42,11 @@
               <h1 class="text-center">Shopping List</h1>
 
               <div id="shopping">
-                <p>Your shopping cart is empty.</p>
+                <!--<p>Your shopping cart is empty.</p>-->
               </div>
 
               <div id="form" class="hidden">
 
-                <div class="form-check m-3">
-                  <input class="form-check-input" type="checkbox" value="" id="ingredient1">
-                  <input type="number" style="width:75px;" value="5" placeholder="5">
-                  <label class="form-check-label" for="ingredient1">
-                    bananas
-                  </label>
-                </div>
-                <!--item 2-->
               </div>
 
               <div id="id01" class="w3-modal">
@@ -71,10 +63,10 @@
               </div>
 
 
-              <button type="button" onclick="save()" id="save" class="btn btn-success hide m-3">Save</button> <!--Saves items been edited-->
-              <button type="button" onclick="hide()" id="edit" class="btn btn-success m-3">Edit</button> <!--Shows form to edit items-->
+              <button type="button" onclick="save()" id="save" class="btn btn-success hide m-3">Save</button> <!--Saves items been edited, add hide if empty-->
+              <button type="button" onclick="hide()" id="edit" class="btn btn-success m-3">Edit</button> <!--Shows form to edit items, add hide if empty-->
               <button type="button" onclick="" class="btn btn-danger m-3">Remove</button> <!--Removes selected items, not functional-->
-              <button type="button" onclick="document.getElementById('id01').style.display='block'" class="btn btn-danger m-3">Empty</button> <!--Deletes all, needs confirmation added-->
+              <button type="button" onclick="document.getElementById('id01').style.display='block'" class="btn btn-danger m-3">Empty</button> <!--Deletes all, needs confirmation added, add hide if empty-->
             </div>
             <div class="col-lg-3 col-md-2 col-sm-12"></div>
           </div>
@@ -121,7 +113,7 @@
       var form = document.getElementById('form');
       form.remove();
       localStorage.clear();
-      //plus clear variables
+      load(); //needs to call in Shopping.js
     }
     function hide() {
       var list = document.getElementById('shopping');
@@ -136,13 +128,6 @@
     function save() {
       hide();
       //also updates form+list
-    }
-    function check() {
-      if (localStorage.clickcount) {
-        localStorage.clickcount = Number(localStorage.clickcount) + 1;
-      } else {
-        localStorage.clickcount = 1;
-      }
     }
 
     //https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox
