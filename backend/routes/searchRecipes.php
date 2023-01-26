@@ -9,7 +9,7 @@ function callback()
 
     if (!isset($_GET['ingredientsID'])) {
 
-        $stmt = $pdo->prepare("SELECT Recipe.Name, Recipe.Image, Recipe.ServingAmount, Recipe.Spicelevel FROM Recipe");
+        $stmt = $pdo->prepare("SELECT Recipe.RecipeID, Recipe.Name, Recipe.Image, Recipe.ServingAmount, Recipe.Spicelevel FROM Recipe");
 
         $stmt->execute([]);
 
@@ -24,7 +24,7 @@ function callback()
         for ($x = 0; $x < $size; $x++) {
 
 
-            $stmt = $pdo->prepare("SELECT Recipe.Name, Recipe.Image, Recipe.ServingAmount, Recipe.Spicelevel FROM Recipe JOIN RecipeIngredients ON (Recipe.RecipeID = RecipeIngredients.RecipeID) JOIN Ingredient ON (RecipeIngredients.IngredientID = Ingredient.IngredientID) WHERE Ingredient.IngredientID = ?");
+            $stmt = $pdo->prepare("SELECT Recipe.RecipeID, Recipe.Name, Recipe.Image, Recipe.ServingAmount, Recipe.Spicelevel FROM Recipe JOIN RecipeIngredients ON (Recipe.RecipeID = RecipeIngredients.RecipeID) JOIN Ingredient ON (RecipeIngredients.IngredientID = Ingredient.IngredientID) WHERE Ingredient.IngredientID = ?");
             $stmt->execute([$_GET['ingredientsID'][$x]]);
             $rtn = $stmt->fetchAll();
 
