@@ -71,6 +71,7 @@
       <p class="w3-medium">Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
     </footer>
     <script src="Recipe.js"></script>
+    <script src="AllIngredients.js"></script>
 
   <script>
     // Used to toggle the menu on small screens when clicking on the menu button
@@ -90,7 +91,13 @@
         modal.style.display = "none";
       }
     }
-    getRecipe(5);
+    getRecipe(recipeID);
+
+    
+    const queryParams = new URLSearchParams(window.location.search);
+    const recipe = queryParams.get('id'); 
+    console.log(recipe); 
+
   </script>
 </body>
 
