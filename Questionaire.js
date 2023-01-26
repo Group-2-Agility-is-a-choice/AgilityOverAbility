@@ -32,46 +32,22 @@ function listAvoid(){
 // MAKE INTO ONE BIG PASS FUNCTION
 
 function passGoods(){
-    let allergIngredients = "";
-    let els = document.getElementsByClassName("allerg-list");
+    // AVOID INGREDIENTS
+    let avoidIngredients = "";
+    let els = document.getElementsByClassName("avoid-list");
     for(let i = 0; i < els.length; i++){
         if (els[i].checked == false){
         // PASS IN NAME????
-            allergIngredients += "&ingredientsID[]=" + els[i].id;
+            avoidIngredients += "&avoidIngredients[]=" + els[i].id;
+        }
+    };
+
+    // OWNED INGREDIENTS
+    let ownedIngr = "";
+    els = document.getElementsByClassName("owned-list");
+    for(let i = 0; i < els.length; i++){
+        if(els[i].checked == true){
+            ownedIngr += "&ownedIngredients[]" + els[i].id;
         }
     };
 }
-
-
-
-
-
-
-
-// // ALLERGENS PASSED TO BACKEND
-// function passAllerg(){
-//     let allergIngredients = "";
-//     let els = document.getElementsByClassName("allerg-list");
-//     for(let i = 0; i < els.length; i++){
-//         if (els[i].checked == false){
-//             // PASS IN NAME????
-//             allergIngredients += "&ingredientsID[]=" + els[i].id;
-//         }
-//     };
-// }
-
-
-// // INGRESDIENTS OWNED TO BACKEND
-// function passOwnedIngr(){
-//     let ownedIngr = "";
-//     let els = document.getElementsByClassName("owned-list");
-//     for(let i = 0; i < els.length; i++){
-//         if(els[i].checked == true){
-//             // PASS IN NAME?????
-//             ownedIngr += "&ingredientsID[]" + els[i].id;
-//         }
-//     };
-// }
-
-
-
