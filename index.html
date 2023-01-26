@@ -44,9 +44,9 @@
     <div class="w3-top" style="height:120px">
       <div class="w3-bar nav-bar w3-card">
         <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right sizing" href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars" style="font-size:90pt"></i></a>
-        <a href="masterPage.html"><img class="w3-bar-item" src="https://cdn.shopify.com/s/files/1/0397/3749/1613/files/littleGreenLogo_180x.jpg?v=1613552940" alt="logo"></a>
-        <a href="#" class="w3-bar-item w3-button p-5 w3-hide-small sizing">Recipes</a>
-        <a href="#" class="w3-bar-item w3-button p-5 w3-hide-small sizing w3-right">Shopping List</a>
+        <a href="index.html"><img class="w3-bar-item" src="https://cdn.shopify.com/s/files/1/0397/3749/1613/files/littleGreenLogo_180x.jpg?v=1613552940" alt="logo"></a>
+        <a href="recipies.html" class="w3-bar-item w3-button p-5 w3-hide-small sizing">Recipes</a>
+        <a href="shoppingList.html" class="w3-bar-item w3-button p-5 w3-hide-small sizing w3-right">Shopping List</a>
       </div>
     </div>
 
@@ -92,6 +92,7 @@
     <p class=""><a href="https://thelittlegreenlarder.com/pages/visiting-the-shop">About Us</a></p>
     <p class="w3-medium">Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
   </footer>
+    <script src="Questionaire.js"></script>
   <script>
     // Used to toggle the menu on small screens when clicking on the menu button
     function myFunction() {
@@ -110,6 +111,8 @@
         modal.style.display = "none";
       }
     }
+    listOwnedIngredients();
+    listAvoid();
   </script>
 </body>
 

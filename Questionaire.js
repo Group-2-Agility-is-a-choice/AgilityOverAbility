@@ -1,10 +1,10 @@
 // WHICH INGREDIENTS DO YOU HAVE LIST
 function listOwnedIngredients(){
-    fetch(backend?getIngredients).then((rtn)=>{
+    fetch("backend?getIngredients").then((rtn)=>{
         rtn.json().then((data)=>{
-            let ownedIngr = "<ul style = 'list-style:none;'>";
-            data.foreach((item)=>{
-                listOfIngrs += `<lu> <input class = "owned-list" type = "checkbox" value = "${item.IngredientID}" id = ${item.IngredientID}"> <label for = "${item.IngredientID}"> ${item.Name}</label><br></li>`;
+            let listOfIngrs = "<ul style = 'list-style:none;'>";
+            data.forEach((item)=>{
+                listOfIngrs += `<li> <input class = "owned-list" type = "checkbox" value = "${item.IngredientID}" id = ${item.IngredientID}"> <label for = "${item.IngredientID}"> ${item.Name}</label><br></li>`;
             });
             listOfIngrs += `</ul>`;
             document.getElementById("question-have").innerHTML = listOfIngrs;
@@ -19,7 +19,7 @@ function listAvoid(){
     fetch("backend?getIngredients").then((rtn)=>{
         rtn.json().then((data)=>{
             let listOfIngr = "<ul style = 'list-style:none;'>";
-            data.foreach((item)=>{
+            data.forEach((item)=>{
                 listOfIngr += `<li> <input class = "avoid-list" type = "checkbox" value = "${item.IngredientID}" id = "${item.IngredientID}"> <label for = "${item.IngredientID}"> ${item.Name}</label><br></li>`;
             });
             listOfIngr += `</ul>`;
