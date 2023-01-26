@@ -2,7 +2,7 @@
 <html lang="en">
 
   <head>
-    <title>Home</title>
+    <title>Recipe</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -19,7 +19,7 @@
     <div class="w3-top" style="height:120px">
       <div class="w3-bar nav-bar w3-card">
         <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right sizing" href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars" style="font-size:90pt"></i></a>
-        <a href="masterPage.html"><img class="w3-bar-item" src="https://cdn.shopify.com/s/files/1/0397/3749/1613/files/littleGreenLogo_180x.jpg?v=1613552940" alt="logo"></a>
+        <a href="#"><img class="w3-bar-item" src="https://cdn.shopify.com/s/files/1/0397/3749/1613/files/littleGreenLogo_180x.jpg?v=1613552940"></a>
         <a href="#" class="w3-bar-item w3-button p-5 w3-hide-small sizing">Recipes</a>
         <a href="#" class="w3-bar-item w3-button p-5 w3-hide-small sizing w3-right">Shopping List</a>
       </div>
@@ -32,20 +32,45 @@
     </div>
 
         <!-- !PAGE CONTENT! -->
-      <div class="w3-main" style="margin-left:340px;margin-right:40px;margin-top:150px;">
-        <h1>Title</h1>
+      <div class="w3-main" style="margin-top:150px">
+        <!--<h1>Recipe</h1>-->
         <!--CONTENT-->
-
+        <div class="container">
+          <div class="row">
+            <div class="col-md col-sm-12">
+              <img src="template_food.jpg" style="width:100%" id="img">
+              <!--IMAGE-->
+            </div>
+            <div class="col-1">
+            </div>
+            <div class="col-md col-sm-12">
+              <h1 class="pt-5" id="title">RECIPE TITLE</h1>
+              <p id="spice">Spice: <b class="text-danger">🌶🌶</b><b>🌶🌶</b></p> <!--2 spice--> <!--will require "Spice: " in output-->
+              <p id="serves">Serves: Number</p> <!--will require "Serves: " in output-->
+              <div class="ingredients">
+                <h1 class="pt-5">Ingredients</h1>
+                <ul id="ingredients">
+                  <li>Ingredients</li> <!--Should be formatted - 'quantity - ingredient'-->
+                </ul>
+                <button type="button" class="btn btn-success">Add to Shopping List</button>
+              </div>
+            </div>
+          </div>
+          <div class="method">
+            <h1 class="pt-5">Method</h1>
+            <p id="method">Method goes in here</p>
+          </div>
+        </div>
       </div>
 
-
-    <!-- Footer -->
-  <footer class="w3-container w3-padding-64 w3-center w3-opacity w3-light-grey w3-xlarge">
-    <a href="https://www.facebook.com/thelittlegreenlarder/"><i class="fa fa-facebook-official w3-hover-opacity"></i></a>
-    <a href="https://www.instagram.com/thelittlegreenlarder/?hl=en"><i class="fa fa-instagram w3-hover-opacity"></i></a>
-    <p class=""><a href="https://thelittlegreenlarder.com/pages/visiting-the-shop">About Us</a></p>
-    <p class="w3-medium">Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
-  </footer>
+      <!-- Footer -->
+    <footer class="w3-container w3-padding-64 w3-center w3-opacity w3-light-grey w3-xlarge">
+      <a href="https://www.facebook.com/thelittlegreenlarder/"><i class="fa fa-facebook-official w3-hover-opacity"></i></a>
+      <a href="https://www.instagram.com/thelittlegreenlarder/?hl=en"><i class="fa fa-instagram w3-hover-opacity"></i></a>
+      <p class=""><a href="https://thelittlegreenlarder.com/pages/visiting-the-shop">About Us</a></p>
+      <p class="w3-medium">Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
+    </footer>
+    <script src="Recipe.js"></script>
 
   <script>
     // Used to toggle the menu on small screens when clicking on the menu button
@@ -65,6 +90,7 @@
         modal.style.display = "none";
       }
     }
+    getRecipe(5);
   </script>
 </body>
 
