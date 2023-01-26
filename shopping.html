@@ -42,14 +42,7 @@
               <h1 class="text-center">Shopping List</h1>
 
               <div id="shopping">
-
-                <div class="form-check m-3" onclick="checkedBox(this)">
-                  <input class="form-check-input" type="checkbox" value="" id="ingredient1">
-                  <label class="form-check-label" for="ingredient1">
-                    5 - bananas
-                  </label>
-                </div>
-                <!--item 2-->
+                <p>Your shopping cart is empty.</p>
               </div>
 
               <div id="form" class="hidden">
@@ -96,7 +89,7 @@
       <p class=""><a href="https://thelittlegreenlarder.com/pages/visiting-the-shop">About Us</a></p>
       <p class="w3-medium">Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
     </footer>
-    <script src="Recipe.js"></script>
+    <script src="Shopping.js"></script>
 
   <script>
     // Used to toggle the menu on small screens when clicking on the menu button
@@ -127,6 +120,7 @@
       list.remove();
       var form = document.getElementById('form');
       form.remove();
+      localStorage.clear();
       //plus clear variables
     }
     function hide() {
@@ -142,6 +136,13 @@
     function save() {
       hide();
       //also updates form+list
+    }
+    function check() {
+      if (localStorage.clickcount) {
+        localStorage.clickcount = Number(localStorage.clickcount) + 1;
+      } else {
+        localStorage.clickcount = 1;
+      }
     }
 
     //https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox

@@ -52,7 +52,7 @@
                 <ul id="ingredients">
                   <li>Ingredients</li> <!--Should be formatted - 'quantity - ingredient'-->
                 </ul>
-                <button type="button" class="btn btn-success">Add to Shopping List</button>
+                <button type="button" class="btn btn-success" onclick="populateStorage()">Add to Shopping List</button>
               </div>
             </div>
           </div>
@@ -91,6 +91,28 @@
       }
     }
     getRecipe(5);
+
+    //validates if local storage is available
+    function supports_html5_storage() {
+      try {
+        return 'localStorage' in window && window['localStorage'] !== null;
+      } catch (e) {
+        return false;
+      }
+    }
+
+
+    function populateStorage() {
+      localStorage.clear();
+      localStorage.setItem('item1', 'bananas');
+      localStorage.setItem('amount1', '5');
+      localStorage.setItem('unit1', 'x');
+      let item1 = localStorage.getItem('item1');
+      let amount1 = localStorage.getItem('amount1');
+      let unit1 = localStorage.getItem('unit1');
+      alert(amount1+unit1+" "+item1);
+    }
+
   </script>
 </body>
 
