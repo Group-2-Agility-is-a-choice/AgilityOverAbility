@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" type="image/png" href="/android/android-launchericon-48-48.png">
+<style>
+    .carrousel > .content {
+        position: absolute;
+        z-index: 1;
+    }
+
+    .carrousel {
+        background: url("https://imagedelivery.net/6wTLslqHIfbRpGZtwgi4Mg/4f473512-82ee-40a7-653f-9c193b6f2b00/original") center;
+        background-size: cover;
+        padding: 1em 5vw;
+        margin: 135px 0 0 0;
+        width: 100vw;
+        height: 20vh;
+        color: white;
+        position: relative;
+        border-bottom: #2b3b2d 0.2em solid;
+    }
+
+    .carrousel-bg {
+        z-index: 0;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.6));
+    }
+
+    .answerHeadCover {
+        z-index: 0;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.6));
+    }
+
+    .question-card > div > ul {
+        list-style: none;
+        display: grid;
+        justify-content: space-evenly;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+        font-size: large;
+    }
+
+    .question-card > * {
+        padding-left: 1em;
+        padding-top: 0.25em;
+    }
+
+    .question-card {
+        background: #3E5641cc;
+        color: #fff;
+        border: #3E5641 2px solid;
+        border-radius: 1em;
+        opacity: 1;
+        display: block;
+        transition: opacity 1s ease-out;
+    }
+    .question-card > input[type=search] {
+        width: calc(100% - 1em);
+        border-radius: 0.7em;
+        height: 2.5em;
+        line-height: 2.5em;
+        padding: 0 1em 0 1em;
+        display: block;
+        margin: 1em auto;
+    }
+    .question-card:nth-of-type(2) {
+        background: #9ea93fcc;
+        color: #2b3b2d;
+        border: #3E5641 2px solid;
+    }
+
+    .other-choices {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 0 1em;
+        padding-right: 1em;
+        grid-auto-rows: 0;
+        overflow: hidden;
+        grid-template-rows: 17.5vh;
+        margin-bottom: 1em;
+    }
+    .res-head > *:hover {
+        cursor: pointer;
+        text-decoration: underline;
+    }
+    .res-card {
+        cursor: pointer;
+    }
+    .res-card:hover > .content > * {
+        text-decoration: underline !important;
+    }
+    .comments {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 1em;
+        padding-right: 1em;
+        grid-auto-rows: 0;
+        overflow: hidden;
+        grid-template-rows: 8vh;
+        margin-bottom: 1em;
+    }
+    .comment-card {
+        background: rgb(255 255 255 / 95%);
+        color: rgba(0,0,0,0.7);
+        height: 8vh;
+        padding: 0.2em;
+        border-radius: 0.25em;
+    }
+
+    .w3-main {
+        margin: 2em auto;
+        width: 80vw;
+    }
+
+    @media only screen and (max-width: 1400px) {
+        .question-card > div > ul {
+            grid-template-columns: repeat(3, 1fr);
+        }
+        .other-choices {
+            grid-template-columns: repeat(5, 1fr);
+        }
+    }
+    @media only screen and (max-width: 992px) {
+        .w3-main {
+            width: 100vw;
+            margin-top: 0;
+        }
+
+        .question-card {
+            border: 0;
+            border-radius: 0;
+        }
+        .question-card > div > ul {
+            grid-template-columns: repeat(2, 1fr);
+        }
+        .other-choices {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+    @media only screen and (max-width: 700px) {
+        .question-card > div > ul {
+            grid-template-columns: repeat(1, 1fr);
+        }
+        .other-choices {
+            grid-template-columns: repeat(2, 1fr);
+        }
+        .comments {
+            display: none;
+        }
+    }
+
+    .question-card:not([data-active]) {
+        display: none
+    }
+
+    .question-card > button {
+        margin-right: 1em;
+        margin-bottom: 1em;
+        margin-left: auto;
+        display: block;
+    }
+    .res-head {
+        background: url(https://imagedelivery.net/6wTLslqHIfbRpGZtwgi4Mg/4f473512-82ee-40a7-653f-9c193b6f2b00/recipeBig) center;
+        background-size: cover;
+        border-radius: 1em 1em 0 0;
+        height: 25vh;
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-end;
+        flex-direction: column;
+        position: relative;
+    }
+    .res-head > .content {
+        z-index: 1;
+    }
+    .res-card > .content {
+        background: black;
+        top: 100%;
+        position: absolute;
+        width: 100%;
+        padding: 0.1em 0.5em;
+        height: 7.5vh;
+    }
+    .res-card {
+        height: 10vh;
+        background: url(https://imagedelivery.net/6wTLslqHIfbRpGZtwgi4Mg/4f473512-82ee-40a7-653f-9c193b6f2b00/recipeSmall) center;
+        background-size: cover;
+        position: relative;
+        margin-bottom: 7.5vh;
+    }
+
+    #question-card-savour > div {
+        display: flex;
+        justify-content: center;
+        gap: 2em;
+        font-size: larger;
+        font-weight: 800;
+    }
+    #question-card-savour > div > input[type=radio] {
+        display: none;
+    }
+    #question-card-savour > div > input[type=radio]+label {
+        text-decoration: none;
+    }
+    #question-card-savour > div > input[type=radio]:checked+label {
+        text-decoration: underline;
+    }
+
+</style>
+<head>
+    <title>Little Green Larder</title>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <link href="https://www.w3schools.com/w3css/4/w3.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Bungee+Inline&display=swap');
+    </style>
+</head>
+<body>
+<!-- Navbar -->
+<div class="w3-top" style="height:120px">
+    <div class="w3-bar nav-bar w3-card">
+        <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right sizing" href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars" style="font-size:90pt"></i></a>
+        <a href="index.html"><img class="w3-bar-item" src="https://cdn.shopify.com/s/files/1/0397/3749/1613/files/littleGreenLogo_180x.jpg?v=1613552940"></a>
+        <a href="search.html" class="w3-bar-item w3-button p-5 w3-hide-small sizing">Recipes</a>
+        <a href="shopping.html" class="w3-bar-item w3-button p-5 w3-hide-small sizing w3-right">Shopping List</a>
+    </div>
+</div>
+
+<!-- Navbar on small screens (remove the onclick attribute if you want the navbar to always show on top of the content when clicking on the links) -->
+<div id="navDemo" class="w3-bar-block nav-bar w3-hide  w3-hide-large w3-hide-medium w3-top" style="margin-top:120px">
+    <a href="index.html" class="w3-bar-item w3-button" onclick="myFunction()">Home</a>
+    <a href="search.html" class="w3-bar-item w3-button" onclick="myFunction()">Recipes</a>
+    <a href="shopping.html" class="w3-bar-item w3-button" onclick="myFunction()">Shopping List</a>
+</div>
+
+<div class="carrousel">
+    <!-- Carrousel -->
+    <div class="content">
+        <h1>Sweet Potato and Chick Pea Curry</h1>
+        <button class="btn button">COOK NOW</button>
+    </div>
+    <div class="carrousel-bg"></div>
+</div>
+
+<!-- !PAGE CONTENT! -->
+<div class="w3-main">
+    <!--CONTENT-->
+    <div class="questions-container">
+        <div class="question-card" data-active="active" id="question-card-have">
+            <h2>What's in the cupboard?</h2>
+            <!-- Items you have -->
+            <input type="search" placeholder="Search" onkeyup="checkHaves(this.value)">
+            <div id="question-have"></div>
+            <button class="btn button"
+                    onclick="document.getElementById('question-card-have').removeAttribute('data-active');document.getElementById('question-card-avoid').setAttribute('data-active','active');">
+                CONTINUE
+            </button>
+        </div>
+        <div class="question-card" id="question-card-avoid">
+            <h2>What don't you want?</h2>
+            <input type="search" placeholder="Search" onkeyup="checkAvoids(this.value)">
+            <!-- Items you avoid -->
+            <div id="question-avoid"></div>
+            <button class="btn button"
+                    onclick="document.getElementById('question-card-avoid').removeAttribute('data-active');document.getElementById('question-card-savour').setAttribute('data-active','active');">
+                CONTINUE
+            </button>
+        </div>
+        <div class="question-card" id="question-card-savour">
+            <!-- Sweet / Savoury & Spice level -->
+            <h2>What kind of meal are we looking for?</h2>
+            <div>
+                <input onclick="checkSavour()" id="sweet" checked name="savour" type="radio" value="0"> <label for="sweet">A Sweet Treat?</label>
+                <input onclick="checkSavour()" id="savoury" name="savour" type="radio" value="1"> <label for="savoury">A Savours Meal?</label>
+            </div>
+            <div id="spiceOmeter" style="display: none">
+                <label for="spice">How Spicy?</label>
+                <input onmousemove="spiceOmeter()" onchange="spiceOmeter()" id="spice" max="3" min="0" value="2" type="range">
+                <label id="spiceness"><b class="text-danger">🌶🌶</b><b>🌶</b></label>
+            </div>
+            <button class="btn button" onclick="document.getElementById('question-card-savour').removeAttribute('data-active');passGoods()">COOK NOW</button>
+        </div>
+        <div class="question-card" id="question-card-answer">
+            <div class="res-head" id="answerHead" onclick="window.location = 'recipe.html?id=' + this.getAttribute('data-id')" data-id="0">
+            </div>
+<!--            Comments system not implemented
+            <h4>What does everyone think of this?</h4>
+            <div class="comments">
+                <div class="comment-card">
+                    <div class="content">
+                        <h5>{{name name}} - <b>⭐⭐⭐⭐</b></h5>
+                        <sub>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium consectetur delectus dolorem dolores magni possimus tenetur unde.</sub>
+                    </div>
+                </div>
+                <div class="comment-card">
+                    <div class="content">
+                        <h5>{{name name}} - <b>⭐⭐⭐⭐</b></h5>
+                        <sub>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium consectetur delectus dolorem dolores magni possimus tenetur unde.</sub>
+                    </div>
+                </div>
+                <div class="comment-card">
+                    <div class="content">
+                        <h5>{{name name}} - <b>⭐⭐⭐⭐</b></h5>
+                        <sub>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium consectetur delectus dolorem dolores magni possimus tenetur unde.</sub>
+                    </div>
+                </div>
+            </div>-->
+            <h4>Looking for something else?</h4>
+            <div class="other-choices" id="other-choices">
+            </div>
+            <button class="btn button" onclick="document.getElementById('question-card-answer').removeAttribute('data-active');document.getElementById('question-card-have').setAttribute('data-active','active');">RESTART</button>
+        </div>
+    </div>
+</div>
+
+
+<!-- Footer -->
+<footer class="w3-container w3-padding-64 w3-center w3-opacity w3-light-grey w3-xlarge">
+    <a href="https://www.facebook.com/thelittlegreenlarder/"><i
+            class="fa fa-facebook-official w3-hover-opacity"></i></a>
+    <a href="https://www.instagram.com/thelittlegreenlarder/?hl=en"><i class="fa fa-instagram w3-hover-opacity"></i></a>
+    <p class=""><a href="https://thelittlegreenlarder.com/pages/visiting-the-shop">About Us</a></p>
+    <p class="w3-medium">Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
+</footer>
+<script src="Questionaire.js"></script>
+<script>
+    // Used to toggle the menu on small screens when clicking on the menu button
+    function myFunction() {
+        var x = document.getElementById("navDemo");
+        if (x.className.indexOf("w3-show") == -1) {
+            x.className += " w3-show";
+        } else {
+            x.className = x.className.replace(" w3-show", "");
+        }
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    var modal = document.getElementById('ticketModal');
+    window.onclick = function (event) {
+        if (event.target === modal) {
+            modal.style.display = "none";
+        }
+    }
+    listOwnedIngredients();
+    listAvoid();
+</script>
+<!--Load SW for caching and pwa based on https://simplepwa.com/-->
+<script>
+    if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+            navigator.serviceWorker && navigator.serviceWorker.register("./sw.js");
+        });
+    }
+</script>
+</body>
+
+</html>

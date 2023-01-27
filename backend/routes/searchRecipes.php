@@ -333,6 +333,7 @@ elseif (isset($_GET['avoidIngredients']) && isset($_GET['SweetOrSavoury'])){
 
             $stmt = $pdo->prepare("SELECT Recipe.Name, Recipe.RecipeID,Recipe.Image, Recipe.ServingAmount, Recipe.Spicelevel FROM Recipe JOIN RecipeIngredients ON (Recipe.RecipeID = RecipeIngredients.RecipeID) GROUP BY Recipe.RecipeID HAVING COUNT(CASE WHEN RecipeIngredients.IngredientID = ? THEN 1 ELSE NULL END) = 0");
             $stmt->execute([$_GET['avoidIngredients'][$x]]);
+
             $rtn = $stmt->fetchAll();
 
             if ($x === 0) {
