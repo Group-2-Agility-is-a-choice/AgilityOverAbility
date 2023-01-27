@@ -87,3 +87,20 @@ function checkSavour() {
 function spiceOmeter() {
     document.getElementById('spiceness').innerHTML = `<b class="text-danger">${'🌶'.repeat(document.getElementById("spice").value)}</b><b>${'🌶'.repeat(3 - (document.getElementById("spice").value))}</b>`;
 }
+
+function checkHaves(q) {
+    for (let ownedEL of document.getElementsByClassName("owned-list")) {
+        if (ownedEL.parentElement.innerText.toLowerCase().includes(q.toLowerCase()))
+            ownedEL.parentElement.style.display = 'list-item';
+        else
+            ownedEL.parentElement.style.display = 'none';
+    }
+}
+function checkAvoids(q) {
+    for (let ownedEL of document.getElementsByClassName("avoid-list")) {
+        if (ownedEL.parentElement.innerText.toLowerCase().includes(q.toLowerCase()))
+            ownedEL.parentElement.style.display = 'list-item';
+        else
+            ownedEL.parentElement.style.display = 'none';
+    }
+}

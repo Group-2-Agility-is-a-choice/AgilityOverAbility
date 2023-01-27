@@ -62,6 +62,15 @@
         display: block;
         transition: opacity 1s ease-out;
     }
+    .question-card > input[type=search] {
+        width: calc(100% - 1em);
+        border-radius: 0.7em;
+        height: 2.5em;
+        line-height: 2.5em;
+        padding: 0 1em 0 1em;
+        display: block;
+        margin: 1em auto;
+    }
     .question-card:nth-of-type(2) {
         background: #9ea93fcc;
         color: #2b3b2d;
@@ -246,6 +255,7 @@
         <div class="question-card" data-active="active" id="question-card-have">
             <h2>What's in the cupboard?</h2>
             <!-- Items you have -->
+            <input type="search" placeholder="Search" onkeyup="checkHaves(this.value)">
             <div id="question-have"></div>
             <button class="btn button"
                     onclick="document.getElementById('question-card-have').removeAttribute('data-active');document.getElementById('question-card-avoid').setAttribute('data-active','active');">
@@ -254,6 +264,7 @@
         </div>
         <div class="question-card" id="question-card-avoid">
             <h2>What don't you want?</h2>
+            <input type="search" placeholder="Search" onkeyup="checkAvoids(this.value)">
             <!-- Items you avoid -->
             <div id="question-avoid"></div>
             <button class="btn button"
@@ -270,7 +281,7 @@
             </div>
             <div id="spiceOmeter" style="display: none">
                 <label for="spice">How Spicy?</label>
-                <input onmousemove="spiceOmeter()" id="spice" max="3" min="0" value="2" type="range">
+                <input onmousemove="spiceOmeter()" onchange="spiceOmeter()" id="spice" max="3" min="0" value="2" type="range">
                 <label id="spiceness"><b class="text-danger">🌶🌶</b><b>🌶</b></label>
             </div>
             <button class="btn button" onclick="document.getElementById('question-card-savour').removeAttribute('data-active');passGoods()">COOK NOW</button>
