@@ -64,7 +64,7 @@ function passGoods(){
                 if (data.length === 1)
                     alternates = "<p>Send us a message ! We are happy to help! <a href='https://www.instagram.com/thelittlegreenlarder'>instagram</a></p>"
                 data.slice(1).forEach((item)=>{
-                    alternates += `<div class="res-card" style="background-image: url('${item?.Image}')" onclick="window.location = 'recipe.html?id=' + this.getAttribute('data-id')" data-id="${item?.RecipeId}">
+                    alternates += `<div class="res-card" style="background-image: url('${item?.Image.replace('recipeBig', 'recipeSmall')}')" onclick="window.location = 'recipe.html?id=' + this.getAttribute('data-id')" data-id="${item?.RecipeId}">
                     <div class="content">
                         <h5>${item?.Name}</h5>
                         <sub>Serves: ${item?.ServingAmount} - <b class="text-danger">${'🌶'.repeat(item?.Spicelevel)}</b><b>${'🌶'.repeat(3 - (item?.Spicelevel))}</b></sub>
