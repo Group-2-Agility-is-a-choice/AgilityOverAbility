@@ -28,6 +28,7 @@ function getRecipe(id) {
             ingredientsList += "</ul>";
             document.getElementById("ingredients").innerHTML = ingredientsList;
         })
+
     });
 }
 
