@@ -35,6 +35,17 @@ p,li {
     font-size: 12pt;
 }
 
+.hidden > * {
+    display: none;
+}
+.hide {
+  display: none;
+}
+
+.checked-item > * {
+    text-decoration: line-through;
+}
+
 @media only screen and (max-width: 800px){
     .sizing{
         font-size: 12pt;
