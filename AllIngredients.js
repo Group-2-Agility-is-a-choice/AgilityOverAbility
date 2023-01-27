@@ -22,7 +22,7 @@ function displayRecipes(){
     let els = document.getElementsByClassName("check-ingredients");
 
     for(let i = 0; i < els.length ; i++){
-        if (els[i].checked == false){
+        if (els[i].checked){
             relevantIngredients += "&ingredientsID[]=" + els[i].id;
         }
     };
@@ -31,7 +31,7 @@ function displayRecipes(){
 
 
     // BACKEND NEEDS IMPLEMENTED SO RELEVANT PARAMETERS CAN BE PASSED IN
-    fetch("backend?searchRecipes").then((rtn)=>{
+    fetch("backend?searchRecipes"+relevantIngredients).then((rtn)=>{
         rtn.json().then((data)=>{
             let recipeList = "";
             data?.forEach((item)=>{
