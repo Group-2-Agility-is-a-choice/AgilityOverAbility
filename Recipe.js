@@ -1,3 +1,5 @@
+var shoppingList = "";
+
 function getRecipe(id) {
     fetch("backend?getFullRecipe&RecipeID=" + id).then((rtn)=>{
         rtn.json().then((data)=>{
@@ -18,11 +20,10 @@ function getRecipe(id) {
             data.ingredients.forEach((item)=>{
                 number += 1;
                 ingredientsList += `<li>${item.Quantity} ${item.Unit} - ${item.Name}</li>`;
-                shoppingList+=number+`":["${item.Name}",${item.Quantity},"${item.Unit}"]`;
-                if (number != array.length){
-                  shoppingList+=`,`;
-                }
+                shoppingList+=`"`+number+`":["${item.Name}",${item.Quantity},"${item.Unit}"]`;
+                shoppingList+=`,`;
             });
+            shoppingList = shoppingList.slice(0, -1);
             shoppingList +=`}`; //need to save this and to be returned by getList()
             ingredientsList += "</ul>";
             document.getElementById("ingredients").innerHTML = ingredientsList;
