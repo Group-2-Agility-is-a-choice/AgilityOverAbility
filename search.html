@@ -39,10 +39,8 @@
             <div class="col-md-7 col-sm-12">
 
               <div class="input-group mb-3" style="max-width:800px">
-              <input type="text" class="form-control border border-success" placeholder="Search" aria-label="Searchbar" aria-describedby="searchbar">
-              <div>
-                <button class="btn btn-success" type="search" id="search">Search</button>
-              </div>
+                <h4 style="margin-right: 10px">Search Recipes</h4>
+              <input type="text" class="form-control border border-success" placeholder="Search" onkeyup="checkSearch(this.value)" aria-label="Searchbar" aria-describedby="searchbar">
             </div>
 
             <div id="seachRecipes">
@@ -57,7 +55,7 @@
               <div class="form-check" id="getIngredients">
                 <input class="form-check-input" type="checkbox" value="" id="ingredient1">
                 <label class="form-check-label" for="ingredient1">
-                  Ingredient1
+                  
                 </label>
 
               </div>
@@ -97,6 +95,15 @@
       }
     } 
     allIngredients();
+
+    function checkSearch(q) {
+    for (let ownedEL of document.getElementsByClassName("recipeCard")) {
+        if (ownedEL.innerText.toLowerCase().includes(q.toLowerCase()))
+            ownedEL.style.display = 'flex';
+        else
+            ownedEL.style.display = 'none';
+    }
+}
   </script>
 </body>
 
