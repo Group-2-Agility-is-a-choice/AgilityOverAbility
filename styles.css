@@ -27,3 +27,7 @@ a {
         font-size: 12pt;
     }
 }
+
+.w3-top {
+    z-index: 10;
+}
