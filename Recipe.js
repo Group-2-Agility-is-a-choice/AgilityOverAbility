@@ -18,7 +18,7 @@ function getRecipe(id) {
             data.ingredients.forEach((item)=>{
                 number += 1;
                 ingredientsList += `<li>${item.Quantity} ${item.Unit} - ${item.Name}</li>`;
-                shoppingList+=number+`":["`+${item.Name}+`",`+${item.Quantity}+`,"`+${item.Unit}+`"]`;
+                shoppingList+=number+`":["${item.Name}",${item.Quantity},"${item.Unit}"]`;
                 if (number != array.length){
                   shoppingList+=`,`;
                 }
