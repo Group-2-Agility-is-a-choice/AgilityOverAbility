@@ -16,7 +16,7 @@ function callback()
           for ($x = 0; $x < $size; $x++) {
   
   
-              $stmt = $pdo->prepare("SELECT Recipe.Name, Recipe.ID, Recipe.Image, Recipe.ServingAmount, Recipe.Spicelevel FROM Recipe JOIN RecipeIngredients ON (Recipe.RecipeID = RecipeIngredients.RecipeID) JOIN Ingredient ON (RecipeIngredients.IngredientID = Ingredient.IngredientID) WHERE Ingredient.IngredientID = ? AND Recipe.SweetOrSavoury = ? AND Recipe.Spicelevel <= ?");
+              $stmt = $pdo->prepare("SELECT Recipe.Name, Recipe.RecipeID, Recipe.Image, Recipe.ServingAmount, Recipe.Spicelevel FROM Recipe JOIN RecipeIngredients ON (Recipe.RecipeID = RecipeIngredients.RecipeID) JOIN Ingredient ON (RecipeIngredients.IngredientID = Ingredient.IngredientID) WHERE Ingredient.IngredientID = ? AND Recipe.SweetOrSavoury = ? AND Recipe.Spicelevel <= ?");
               $stmt->execute([$_GET['ingredientsID'][$x],$_GET['SweetOrSavoury'],$_GET['SpiceLevel']] );
               $rtn = $stmt->fetchAll();
   
@@ -151,6 +151,10 @@ function callback()
             "content-type" => "application/json",
             "content" => json_encode($rtn, JSON_PRETTY_PRINT)
         ];
+  }
+
+  elseif(isset($_GET['ingredientsID']) && isset($_GET['avoidIngredients'])){
+
   }
 
  
