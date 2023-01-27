@@ -1,5 +1,6 @@
 let ingredients = [];
 
+// Makes check boxes for all the ingredients
 function allIngredients(){
     fetch("backend?getIngredients").then((rtn)=>{
         rtn.json().then((data)=>{
@@ -14,6 +15,7 @@ function allIngredients(){
     });
 }
 
+// Displays recipes
 function displayRecipes(){
     let relevantIngredients = "";
 
