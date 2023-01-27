@@ -2,7 +2,7 @@ let ingredients = [];
 
 // Makes check boxes for all the ingredients
 function allIngredients(){
-    fetch("backend?getIngredients").then((rtn)=>{
+    fetch("backend/?getIngredients").then((rtn)=>{
         rtn.json().then((data)=>{
             let ingredientsList = "<ul style='list-style:none;'>"
             data.forEach((item)=>{
@@ -31,7 +31,7 @@ function displayRecipes(){
 
 
     // BACKEND NEEDS IMPLEMENTED SO RELEVANT PARAMETERS CAN BE PASSED IN
-    fetch("backend?searchRecipes"+relevantIngredients).then((rtn)=>{
+    fetch("backend/?searchRecipes"+relevantIngredients).then((rtn)=>{
         rtn.json().then((data)=>{
             let recipeList = "";
             data?.forEach((item)=>{
