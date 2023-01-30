@@ -461,6 +461,12 @@
     {
       "src": "icons/ios/1024.png",
       "sizes": "1024x1024"
+    },
+    {
+      "src": "icons/maskable_icon.png",
+      "sizes": "2100x2100",
+      "type": "image/png",
+      "purpose": "any maskable"
     }
   ],
   "shortcuts": [],
