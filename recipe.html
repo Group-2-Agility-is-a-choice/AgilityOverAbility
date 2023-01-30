@@ -106,9 +106,9 @@
       localStorage.clear(); //`{"1":["bananas",5,"x"],"2":["flour",100,"mg"]}`
       //console.log(JSON.stringify({1:['bananas',5,'x'],2:['flour',100,'mg']}));
       let test = `{"1":["bananas",5,"x"],"2":["flour",100,"mg"]}`
-      addList();
+      //addList(); //adds items from ingredients to list
       //localStorage.setItem('storage',getList()); //1 is number, banana is item, 5 is amount, x is unit
-      //localStorage.setItem('storage',test);
+      localStorage.setItem('storage',test);
       let storage = localStorage.getItem('storage');
       console.log(storage); //for testing, shows json string if successful
     }
