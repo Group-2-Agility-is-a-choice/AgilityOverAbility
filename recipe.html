@@ -46,7 +46,7 @@
             </div>
             <div class="col-md col-sm-12">
               <h1 class="pt-5" id="title"></h1>
-              <p id="spice"><b class="text-danger"></b><b></b></p> <!--2 spice--> <!--will require "Spice: " in output-->
+              <p id="spice"></p> <!--2 spice--> <!--will require "Spice: " in output-->
               <p id="serves"></p> <!--will require "Serves: " in output-->
               <div class="ingredients">
                 <h1 class="pt-5">Ingredients</h1>
@@ -110,13 +110,13 @@
       let storage = localStorage.getItem('storage');
       alert(storage); //for testing, shows json string if successful
     }
-    
+
     const queryParams = new URLSearchParams(window.location.search);
-    const chosenRecipe = queryParams.get('id'); 
+    const chosenRecipe = queryParams.get('id');
     console.log(chosenRecipe);
-    
+
     getRecipe(chosenRecipe);
-   
+
   </script>
 </body>
 

@@ -7,9 +7,9 @@ function allIngredients(){
             let ingredientsList = "<ul style='list-style:none;'>"
             data.forEach((item)=>{
                 ingredientsList += `<li> <input onclick='displayRecipes()' class="check-ingredients" type = "checkbox" value="${item.IngredientID}" id = "${item.IngredientID}"> <label for = "${item.IngredientID}"> ${item.Name}</label><br></li>`;
-            }); 
-            ingredientsList += `</ul>`;  
-            document.getElementById("getIngredients").innerHTML = ingredientsList; 
+            });
+            ingredientsList += `</ul>`;
+            document.getElementById("getIngredients").innerHTML = ingredientsList;
             displayRecipes();
         })
     });
@@ -42,13 +42,13 @@ function displayRecipes(){
                 <div class="col-md-8">
                   <div class="card-body">
                     <h4 class="card-title"><a href="recipe.html?id=${item.RecipeID}">${item.Name}</h4></a>
-                    <p class="card-text mt-4"><small class="text-muted">Spice: ${item.Spicelevel}</small></p>
+                    <p class="card-text mt-4"><small class="text-muted">Spice: <b class='text-danger'>${'🌶'.repeat(item.SpiceLevel)}</b><b>${'🌶'.repeat(3 - (item.SpiceLevel))}</b></small></p>
                     <p class="card-text"><small class="text-muted">Serves: ${item.ServingAmount}</small></p>
                   </div>
                 </div>
               </div></div>`;
-            });   
-            document.getElementById("seachRecipes").innerHTML = recipeList; 
+            });
+            document.getElementById("seachRecipes").innerHTML = recipeList;
         })
 
     });
