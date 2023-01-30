@@ -43,7 +43,7 @@
               <h1 class="text-center">Shopping List</h1>
 
               <div id="shopping">
-                <!--<p>Your shopping cart is empty.</p>-->
+                <p>Your shopping cart is empty.</p>
               </div>
 
               <div id="form" class="hidden">
@@ -51,7 +51,7 @@
               </div>
 
               <div id="id01" class="w3-modal">
-                <div class="w3-modal-content w3-card-4 w3-animate-zoom p-3" style="max-width:600px">
+                <div class="w3-modal-content w3-card-4 w3-animate-zoom p-3" style="margin-top:100px;max-width:600px">
                   <h3>Warning,</h3>
                   <p>You are about to empty your shopping list.</p>
                   <p>Would you like to confirm?</p>
@@ -66,8 +66,8 @@
 
               <button type="button" onclick="save()" id="save" class="btn btn-success hide m-3">Save</button> <!--Saves items been edited, add hide if empty-->
               <button type="button" onclick="hide()" id="edit" class="btn btn-success hide m-3">Edit</button> <!--Shows form to edit items, add hide if empty-->
-              <button type="button" onclick=""  id="remove" class="btn btn-danger hide m-3">Remove</button> <!--Removes selected items, not functional-->
-              <button type="button" onclick="document.getElementById('id01').style.display='block'" class="btn btn-danger m-3">Empty</button> <!--Deletes all, needs confirmation added, add hide if empty-->
+              <button type="button" onclick="remove()"  id="remove" class="btn btn-danger hide m-3">Remove</button> <!--Removes selected items, not functional-->
+              <button type="button" onclick="document.getElementById('id01').style.display='block'" id="empty" class="btn btn-danger hide m-3">Empty</button> <!--Deletes all, needs confirmation added, add hide if empty-->
             </div>
             <div class="col-lg-3 col-md-2 col-sm-12"></div>
           </div>
@@ -104,18 +104,6 @@
     }
     //getRecipe(5);
 
-    function checkedBox(cb) {
-      //cb.classList.toggle('checked-item');
-      //for lines through text option, slightly buggy
-    }
-    function empty() {
-      var list = document.getElementById('shopping');
-      list.remove();
-      var form = document.getElementById('form');
-      form.remove();
-      localStorage.clear();
-      load(); //needs to call in Shopping.js
-    }
     function hide() {
       var list = document.getElementById('shopping');
       list.classList.toggle('hidden');
