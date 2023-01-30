@@ -109,10 +109,14 @@ function update() {
       });
         shoppingList = shoppingList.slice(0, -1); //removes comma
         shoppingList +=`}`;
+        if (shoppingList!="}") {
+          document.getElementById("shopping").innerHTML = newList;
+          document.getElementById("form").innerHTML = newForm;
+          localStorage.setItem('storage',shoppingList); //new list is saved
+        }else  {
+          empty();
+        }
 
-        document.getElementById("shopping").innerHTML = newList;
-        document.getElementById("form").innerHTML = newForm;
-        localStorage.setItem('storage',shoppingList); //new list is saved
     } catch {
       //error
     }
@@ -170,10 +174,13 @@ function remove() {
       });
         shoppingList = shoppingList.slice(0, -1); //removes comma
         shoppingList +=`}`;
-
-        document.getElementById("shopping").innerHTML = newList;
-        document.getElementById("form").innerHTML = newForm;
-        localStorage.setItem('storage',shoppingList); //new list is saved
+        if (shoppingList!="}") {
+          document.getElementById("shopping").innerHTML = newList;
+          document.getElementById("form").innerHTML = newForm;
+          localStorage.setItem('storage',shoppingList); //new list is saved
+        }else  {
+          empty();
+        }
     } catch {
       //error
     }
