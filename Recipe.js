@@ -1,7 +1,7 @@
 var shoppingList = "";
 
 function getRecipe(id) {
-    fetch("backend?getFullRecipe&RecipeID=" + id).then((rtn)=>{
+    fetch("backend/?getFullRecipe&RecipeID=" + id).then((rtn)=>{
         rtn.json().then((data)=>{
             // display the recipe name
             document.getElementById("title").innerHTML = data.recipeDetails[0].Name;

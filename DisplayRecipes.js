@@ -1,5 +1,5 @@
 function displayRecipes(){
-    fetch("backend?searchRecipes").then((rtn)=>{
+    fetch("backend/?searchRecipes").then((rtn)=>{
         rtn.json().then((data)=>{
             let recipeList = "<ul>";
             data.seachRecipes.foreach((item)=>{

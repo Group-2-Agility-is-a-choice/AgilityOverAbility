@@ -1,6 +1,6 @@
 // WHICH INGREDIENTS DO YOU HAVE LIST
 function listOwnedIngredients(){
-    fetch("backend?getIngredients").then((rtn)=>{
+    fetch("backend/?getIngredients").then((rtn)=>{
         rtn.json().then((data)=>{
             let listOfIngrs = "<ul style = 'list-style:none;'>";
             data.forEach((item)=>{
@@ -16,7 +16,7 @@ function listOwnedIngredients(){
 
 // LIST OF POTENTIAL ALLERGENS WITH CHECKBOXES
 function listAvoid(){
-    fetch("backend?getIngredients").then((rtn)=>{
+    fetch("backend/?getIngredients").then((rtn)=>{
         rtn.json().then((data)=>{
             let listOfIngr = "<ul style = 'list-style:none;'>";
             data.forEach((item)=>{
@@ -33,7 +33,7 @@ function listAvoid(){
 
 function passGoods(){
     // AVOID INGREDIENTS
-    let urlBuilder = "backend?searchRecipes";
+    let urlBuilder = "backend/?searchRecipes";
     let els = document.getElementsByClassName("avoid-list");
     for(let i = 0; i < els.length; i++){
         if (els[i].checked){
@@ -50,7 +50,7 @@ function passGoods(){
     }
 
     urlBuilder += "&SpiceLevel=" + document.getElementById("spice").value;
-    urlBuilder += "&SweetOrSavoury=" + ((!(document.getElementById("sweet").checked)) ? "0" : "1");
+    urlBuilder += "&SweetOrSavoury=" + ((!(document.getElementById("sweet").checked)) ? "1" : "0");
     fetch(urlBuilder).then((rtn)=>{
         rtn.json().then((data)=>{
             if (data.length >= 0) {
