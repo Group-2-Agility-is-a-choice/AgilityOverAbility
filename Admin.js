@@ -21,5 +21,4 @@ function editbutton(){
 function deleteButton(){
     let recipeDelete = "";
     recipeDelete += "&recipeDelete="
-
 }
