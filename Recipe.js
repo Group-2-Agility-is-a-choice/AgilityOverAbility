@@ -36,37 +36,34 @@ function addList(id) {
         rtn.json().then((data) => {
             if (localStorage.length !== 0) {
                 let storage = localStorage.getItem('storage');
-                try {
-                    const obj = JSON.parse(storage);
-                    const keys = Object.keys(obj);
-                    // print all keys
-                    let tempList = "{";
-                    //skimmed items from list into order
-                    let amount = obj[key][1];
-                    let unit = obj[key][2];
-                    let itemName = obj[key][0];
+                const obj = JSON.parse(storage);
+                const keys = Object.keys(obj);
+                // print all keys
+                let tempList = "{";
+                //skimmed items from list into order
+                let amount = obj[key][1];
+                let unit = obj[key][2];
+                let itemName = obj[key][0];
 
-                    data.ingredients.forEach((item) => {
-                        if (itemName === item.Name) {
-                            let tempAmount = amount + item.Quantity; //will only work if same unit
-                            tempList += `"` + key + `":["${itemName}",${item.Quantity},"${tempAmount}"],`;
-                        } else {
-                            tempList += `"` + key + `":["${itemName}",${amount},"${unit}"],`;
+                data.ingredients.forEach((item) => {
+                    if (itemName === item.Name) {
+                        let tempAmount = amount + item.Quantity; //will only work if same unit
+                        tempList += `"` + key + `":["${itemName}",${item.Quantity},"${tempAmount}"],`;
+                    } else {
+                        tempList += `"` + key + `":["${itemName}",${amount},"${unit}"],`;
+                    }
+                })//gone through all items in basket, now add extra ingredients
+                data.ingredients.forEach((item) => {
+                    keys.forEach((key) => {
+                        itemName = obj[key][0];
+                        if (itemName !== item.Name) { //if new ingredient not in list add it
+                            tempList += `"` + key + `":["${itemName}",${item.Quantity},"${item.Amount}"],`;
                         }
-                    })//gone through all items in basket, now add extra ingredients
-                    data.ingredients.forEach((item) => {
-                        keys.forEach((key) => {
-                            itemName = obj[key][0];
-                            if (itemName !== item.Name) { //if new ingredient not in list add it
-                                tempList += `"` + key + `":["${itemName}",${item.Quantity},"${item.Amount}"],`;
-                            }
-                        })
                     })
-                    tempList = tempList.slice(0, -1);
-                    tempList += `}`;
+                })
+                tempList = tempList.slice(0, -1);
+                tempList += `}`;
 
-                } catch {//error somewhere;
-                }
             } else {
                 localStorage.setItem('storage', shoppingList); //list is empty so add just this
             }
