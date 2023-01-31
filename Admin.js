@@ -13,6 +13,10 @@ function showAllRecipes(){
 }
 
 function editbutton(){
+    var modal = document.getElementById("myModal");
+
+    modal.style.display = "block";
+
     let edit = "";
     edit += document.getElementById("editRecipes").innerHTML;
     edit += "&recipeEdit=" + item.RecipeID;
