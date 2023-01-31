@@ -1,5 +1,6 @@
 var shoppingList = "";
 var recipeDeets
+var addList = "";
 
 function getRecipe(id) {
     fetch("backend/?getFullRecipe&RecipeID=" + id).then((rtn)=>{
@@ -50,6 +51,8 @@ function updatePage(id)
                 ingredientsList += `<li>${(item.Quantity / data.recipeDetails[0].ServingAmount) * servesVal} ${item.Unit} - ${item.Name}</li>`;
                 shoppingList+=`"`+number+`":["${item.Name}",${item.Quantity},"${item.Unit}"]`;
                 shoppingList+=`,`;
+                ingredientsList += `<li>${item.Quantity} ${item.Unit} - ${item.Name}</li>`;
+                shoppingList+=`"`+number+`":["${item.Name}",${item.Quantity},"${item.Unit}"],`;
             });
             shoppingList = shoppingList.slice(0, -1);
             shoppingList +=`}`; //need to save this and to be returned by getList()
@@ -59,6 +62,57 @@ function updatePage(id)
         })
 
     });
+}
+
+function addList(id) {
+  fetch("backend/?getFullRecipe&RecipeID=" + id).then((rtn)=>{
+      rtn.json().then((data)=>{
+      if(localStorage.length!=0) {
+        let storage = localStorage.getItem('storage');
+        console.log(storage);
+
+        try {
+          const obj = JSON.parse(storage);
+          const keys = Object.keys(obj);
+          // print all keys
+          let tempList = "{";
+          console.log(keys); //0:1,1:2
+          // iterate over object
+          keys.forEach((key) => {
+            //console.log(`${key}: ${obj[0][0]}`);
+          //});
+          //skimmed items from list into order
+            let amount = obj[key][1];
+            let unit = obj[key][2];
+            let itemName = obj[key][0];
+
+            data.ingredients.forEach((item))=>{
+              if (itemName==item.Name) {
+                let tempAmount = amount+item.Quantity; //will only work if same unit
+                tempList+=`"`+key+`":["${itemName}",${item.Quantity},"${tempAmount}"],`;
+              }else {
+                tempList+=`"`+key+`":["${itemName}",${amount},"${unit}"],`;
+              }
+            }
+          })//gone through all items in basket, now add extra ingredients
+          data.ingredients.forEach((item))=>{
+            keys.forEach((key) => {
+              itemName = obj[key][0];
+              if (itemName!=item.Name) { //if new ingredient not in list add it
+                tempList+=`"`+key+`":["${itemName}",${item.Quantity},"${item.Amount}"],`;
+              }
+            })
+          })
+          tempList = tempList.slice(0, -1);
+          tempList +=`}`;
+
+        } catch {//error somewhere;
+        }
+      }else {
+        localStorage.setItem('storage',getList()); //list is empty so add just this
+      }
+    })
+  });
 }
 
 function getList() {

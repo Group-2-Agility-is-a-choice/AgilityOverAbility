@@ -4,6 +4,7 @@
   <head>
     <title>Shopping List</title>
     <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="/icons/android/android-launchericon-48-48.png">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
@@ -19,7 +20,7 @@
     <div class="w3-top" style="height:120px">
       <div class="w3-bar nav-bar w3-card">
         <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right sizing" href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars" style="font-size:90pt"></i></a>
-        <a href="https://thelittlegreenlarder.com/"><img class="w3-bar-item" src="https://cdn.shopify.com/s/files/1/0397/3749/1613/files/littleGreenLogo_180x.jpg?v=1613552940"></a>
+        <a href="index.html"><img class="w3-bar-item" style="height: 120px" src="logo-white.svg"></a>
         <a href="search.html" class="w3-bar-item w3-button p-5 w3-hide-small sizing">Recipes</a>
         <a href="shopping.html" class="w3-bar-item w3-button p-5 w3-hide-small sizing w3-right">Shopping List</a>
       </div>
@@ -27,6 +28,7 @@
 
     <!-- Navbar on small screens (remove the onclick attribute if you want the navbar to always show on top of the content when clicking on the links) -->
     <div id="navDemo" class="w3-bar-block nav-bar w3-hide  w3-hide-large w3-hide-medium w3-top" style="margin-top:120px">
+      <a href="index.html" class="w3-bar-item w3-button" onclick="myFunction()">Home</a>
       <a href="search.html" class="w3-bar-item w3-button" onclick="myFunction()">Recipes</a>
       <a href="shopping.html" class="w3-bar-item w3-button" onclick="myFunction()">Shopping List</a>
     </div>
@@ -42,7 +44,7 @@
               <h1 class="text-center">Shopping List</h1>
 
               <div id="shopping">
-                <!--<p>Your shopping cart is empty.</p>-->
+                <p>Your shopping cart is empty.</p>
               </div>
 
               <div id="form" class="hidden">
@@ -50,7 +52,7 @@
               </div>
 
               <div id="id01" class="w3-modal">
-                <div class="w3-modal-content w3-card-4 w3-animate-zoom p-3" style="max-width:600px">
+                <div class="w3-modal-content w3-card-4 w3-animate-zoom p-3" style="margin-top:100px;max-width:600px">
                   <h3>Warning,</h3>
                   <p>You are about to empty your shopping list.</p>
                   <p>Would you like to confirm?</p>
@@ -63,10 +65,10 @@
               </div>
 
 
-              <!--<button type="button" onclick="save()" id="save" class="btn btn-success hide m-3">Save</button> <-Saves items been edited, add hide if empty->
-              <button type="button" onclick="hide()" id="edit" class="btn btn-success m-3">Edit</button> <-Shows form to edit items, add hide if empty->
-              <button type="button" onclick="" class="btn btn-danger m-3">Remove</button> <-Removes selected items, not functional-->
-              <button type="button" onclick="document.getElementById('id01').style.display='block'" class="btn btn-danger m-3">Empty</button> <!--Deletes all, needs confirmation added, add hide if empty-->
+              <button type="button" onclick="save()" id="save" class="btn btn-success hide m-3">Save</button> <!--Saves items been edited, add hide if empty-->
+              <button type="button" onclick="hide()" id="edit" class="btn btn-success hide m-3">Edit</button> <!--Shows form to edit items, add hide if empty-->
+              <button type="button" onclick="remove()"  id="remove" class="btn btn-danger hide m-3">Remove</button> <!--Removes selected items, not functional-->
+              <button type="button" onclick="document.getElementById('id01').style.display='block'" id="empty" class="btn btn-danger hide m-3">Empty</button> <!--Deletes all, needs confirmation added, add hide if empty-->
             </div>
             <div class="col-lg-3 col-md-2 col-sm-12"></div>
           </div>
@@ -103,18 +105,6 @@
     }
     //getRecipe(5);
 
-    function checkedBox(cb) {
-      //cb.classList.toggle('checked-item');
-      //for lines through text option, slightly buggy
-    }
-    function empty() {
-      var list = document.getElementById('shopping');
-      list.remove();
-      var form = document.getElementById('form');
-      form.remove();
-      localStorage.clear();
-      load(); //needs to call in Shopping.js
-    }
     function hide() {
       var list = document.getElementById('shopping');
       list.classList.toggle('hidden');
@@ -127,6 +117,7 @@
     }
     function save() {
       hide();
+      update();
       //also updates form+list
     }
 
