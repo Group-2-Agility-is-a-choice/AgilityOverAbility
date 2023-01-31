@@ -24,6 +24,10 @@ function editbutton(){
 
 function deleteButton(){
     let recipeDelete = "";
-    recipeDelete += "&recipeDelete="
+    recipeDelete += "&recipeDelete=";
+}
 
+function addRecipe(){
+    let addRecipe = "";
+    addRecipe += "&addRecipe=";
 }
