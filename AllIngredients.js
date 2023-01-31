@@ -35,9 +35,6 @@ function displayRecipes(){
         rtn.json().then((data)=>{
             let recipeList = "";
             data?.forEach((item)=>{
-              let chili = '🌶🌶🌶'; //if 3 no slice
-              let spice = chili.slice(0,(3 - item.SpiceLevel));
-              let mild = chili.slice(0,(item.SpiceLevel));
                 recipeList += `<div class=" recipeCard card mb-3 border border-success" style="max-width: 800px;" ><div class="row no-gutters">
                 <div class="col-md-4">
                   <img src="${item.Image}" style="height:100%;width:100%;" class="card-img" alt="...">
@@ -45,7 +42,7 @@ function displayRecipes(){
                 <div class="col-md-8">
                   <div class="card-body">
                     <h4 class="card-title"><a href="recipe.html?id=${item.RecipeID}">${item.Name}</h4></a>
-                    <p class="card-text mt-4"><small class="text-muted">Spice: <b class='text-danger'>${spice}</b><b>${mild}</b></small></p>
+                    <p class="card-text mt-4"><small class="text-muted">Spice: <b class="text-danger">${'🌶'.repeat(item.SpiceLevel)}</b><b>${'🌶'.repeat(3 - (item.SpiceLevel))}</b></small></p>
                     <p class="card-text"><small class="text-muted">Serves: ${item.ServingAmount}</small></p>
                   </div>
                 </div>
