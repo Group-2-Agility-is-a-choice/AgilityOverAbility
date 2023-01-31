@@ -16,6 +16,44 @@
     <style>
       @import url('https://fonts.googleapis.com/css2?family=Bungee+Inline&display=swap');
     </style>
+    <style>
+      #qrcode {
+        border: 10px solid #3E5641;
+      }
+      #qrDialogue>div {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+      }
+      #qrDialogue>div>div {
+        position: relative;
+      }
+      #qrcodeLogo {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+      #cameraLoading {
+        text-align: center;
+        display: block;
+      }
+      .scan-region-highlight > * {
+        stroke: #3E5641 !important;
+      }
+      #buttons {
+        position: absolute;
+        bottom: 24px;
+        right: 22px;
+        display: none;
+        justify-items: right;
+        gap: 0.5rem;
+      }
+      #video {
+        width: 100%;
+      }
+    </style>
   </head>
   <body>
     <!-- Navbar -->
@@ -62,21 +100,36 @@
                     <button onclick="document.getElementById('id01').style.display='none'" type="button" class="w3-button bg-success text-light">Cancel</button>
                     <button onclick="document.getElementById('id01').style.display='none';empty()" type="button" class="w3-button w3-red">Confirm</button>
                   </div>
-
                 </div>
               </div>
-
 
               <button type="button" onclick="save()" id="save" class="btn btn-success hide m-3">Save</button> <!--Saves items been edited, add hide if empty-->
               <button type="button" onclick="hide()" id="edit" class="btn btn-success hide m-3">Edit</button> <!--Shows form to edit items, add hide if empty-->
               <button type="button" onclick="remove()"  id="remove" class="btn btn-danger hide m-3">Remove</button> <!--Removes selected items, not functional-->
               <button type="button" onclick="document.getElementById('id01').style.display='block'" id="empty" class="btn btn-danger hide m-3">Empty</button> <!--Deletes all, needs confirmation added, add hide if empty-->
+              <button type="button" class="btn btn-warning m-3" onclick="showQRCode()">Share</button>
+              <button type="button" class="btn btn-secondary m-3" onclick="scanCode()">Load Basket</button>
             </div>
             <div class="col-lg-3 col-md-2 col-sm-12"></div>
           </div>
         </div>
       </div>
-
+    <div id="qrDialogue" class="w3-modal" onclick="this.style.display = 'none';">
+      <div class="w3-modal-content w3-card-4 w3-animate-zoom p-3" style="margin-top:100px;max-width:600px">
+        <div>
+          <div id="qrcode" style="aspect-ratio: 1 / 1; max-width: 532px;margin: auto;"></div>
+          <img src="/LGL_Logo.png" id="qrcodeLogo">
+        </div>
+        <h4>Scan this code on your mobile device to access your basket there.</h4>
+      </div>
+    </div>
+    <div id="scannerDialogue" class="w3-modal">
+      <div class="w3-modal-content w3-card-4 w3-animate-zoom p-3" style="margin-top:100px;max-width:600px">
+        <video id="video"></video>
+        <div id="buttons"><button class="btn btn-secondary" onclick="closeCam()">❌</button><button class="btn btn-secondary" onclick="qrScanner.toggleFlash()">🔦</button><button class="btn btn-secondary" onclick="qrScanner.setCamera(camera === 'user'?'environment':'user');camera = camera === 'user'?'environment':'user'">🔁</button></div>
+        <div id="cameraLoading">Camera Loading...</div>
+      </div>
+    </div>
 
       <!-- Footer -->
     <footer class="w3-container w3-padding-64 w3-center w3-opacity w3-light-grey w3-xlarge">
@@ -85,8 +138,14 @@
       <p class=""><a href="https://thelittlegreenlarder.com/pages/visiting-the-shop">About Us</a></p>
       <p class="w3-medium">Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
     </footer>
-    <script src="Shopping.js"></script>
 
+    <!--Import QR code scanner lib from https://github.com/nimiq/qr-scanner-->
+    <script src="/qr-scanner.umd.min.js"></script>
+    <!--Import QR code generator lib from https://davidshimjs.github.io/qrcodejs/-->
+    <script src="/qrcode.min.js"></script>
+    <!--Import LZ compression lib from https://pieroxy.net/blog/pages/lz-string/-->
+    <script src="/lz-string.min.js"></script>
+    <script src="Shopping.js"></script>
   <script>
     // Used to toggle the menu on small screens when clicking on the menu button
     function myFunction() {
