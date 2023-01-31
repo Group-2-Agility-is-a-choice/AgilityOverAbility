@@ -51,8 +51,6 @@ function updatePage(id)
                 ingredientsList += `<li>${(item.Quantity / data.recipeDetails[0].ServingAmount) * servesVal} ${item.Unit} - ${item.Name}</li>`;
                 shoppingList+=`"`+number+`":["${item.Name}",${item.Quantity},"${item.Unit}"]`;
                 shoppingList+=`,`;
-                ingredientsList += `<li>${item.Quantity} ${item.Unit} - ${item.Name}</li>`;
-                shoppingList+=`"`+number+`":["${item.Name}",${item.Quantity},"${item.Unit}"],`;
             });
             shoppingList = shoppingList.slice(0, -1);
             shoppingList +=`}`; //need to save this and to be returned by getList()
@@ -86,16 +84,16 @@ function addList(id) {
             let unit = obj[key][2];
             let itemName = obj[key][0];
 
-            data.ingredients.forEach((item))=>{
+            data.ingredients.forEach((item)=>{
               if (itemName==item.Name) {
                 let tempAmount = amount+item.Quantity; //will only work if same unit
                 tempList+=`"`+key+`":["${itemName}",${item.Quantity},"${tempAmount}"],`;
               }else {
                 tempList+=`"`+key+`":["${itemName}",${amount},"${unit}"],`;
               }
-            }
+            })
           })//gone through all items in basket, now add extra ingredients
-          data.ingredients.forEach((item))=>{
+          data.ingredients.forEach((item)=>{
             keys.forEach((key) => {
               itemName = obj[key][0];
               if (itemName!=item.Name) { //if new ingredient not in list add it
