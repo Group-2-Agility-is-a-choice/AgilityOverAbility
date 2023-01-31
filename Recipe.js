@@ -1,6 +1,5 @@
 let shoppingList = "";
 var recipeDeets
-var addList = "";
 
 function getRecipe(id) {
     fetch("backend/?getFullRecipe&RecipeID=" + id).then((rtn) => {
