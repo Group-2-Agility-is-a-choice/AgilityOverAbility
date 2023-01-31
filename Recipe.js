@@ -34,6 +34,8 @@ function getRecipe(id) {
     });
 }
 
+
+// Funtion to update the ingredients for when the serving amout changes
 function updatePage(id)
 {
     fetch("backend/?getFullRecipe&RecipeID=" + id).then((rtn)=>{
