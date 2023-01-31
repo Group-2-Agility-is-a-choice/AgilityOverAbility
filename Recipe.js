@@ -6,8 +6,9 @@ function getRecipe(id) {
             // display the recipe name
             document.getElementById("title").innerHTML = data.recipeDetails[0].Name;
             // display spice level
-            let spice = '🌶'.repeat(data.recipeDetails[0].SpiceLevel);
-            let mild = '🌶'.repeat(3- data.recipeDetails[0].SpiceLevel);
+            let charc = '🌶';
+            let spice = charc.repeat(data.recipeDetails[0].SpiceLevel);
+            let mild = charc.repeat(3 - data.recipeDetails[0].SpiceLevel);
             document.getElementById("spice").innerHTML = `Spice : <b class='text-danger'>${spice}</b><b>${mild}</b>```;
             // display method
             document.getElementById("method").innerHTML = data.recipeDetails[0].Instructions;
