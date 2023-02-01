@@ -1,5 +1,5 @@
 function allReviews(RecipeID){
-    fetch(`backend/?displayReviews&id=${RecipeID}`).then((rtn)=>{
+    fetch("backend/?searchRecipes&key=" + getCookie('jack')).then((rtn)=>{
         rtn.json().then((data)=>{
             let reviewList = "<ul>";
             data.seachRecipes.foreach((item)=>{
