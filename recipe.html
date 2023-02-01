@@ -42,7 +42,7 @@
         <div class="container">
           <div class="row">
             <div class="col-md col-sm-12">
-              <img src="" style="width:100%" id="img">
+              <img src="" style="width:100%" id="img" alt="Recipe Image">
               <!--IMAGE-->
             </div>
             <div class="col-1">
@@ -51,7 +51,7 @@
               <h1 class="pt-5" id="title"></h1>
               <p id="spice"></p> <!--2 spice--> <!--will require "Spice: " in output-->
               <p>Serves:
-                <input type="number" id="serves" min="1" onchange="updatePage(chosenRecipe)"></input></p> <!--will require "Serves: " in output-->
+                <input type="number" id="serves" min="1" onchange="updatePage(chosenRecipe)"/></p> <!--will require "Serves: " in output-->
               <div class="ingredients">
                 <h1 class="pt-5">Ingredients</h1>
                 <ul id="ingredients">
@@ -75,10 +75,13 @@
       <p class=""><a href="https://thelittlegreenlarder.com/pages/visiting-the-shop">About Us</a></p>
       <p class="w3-medium">Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
     </footer>
+    <!-- Pull MD rendering lib from https://github.com/markedjs/marked -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
     <script src="Recipe.js"></script>
     <script src="AllIngredients.js"></script>
 
-  <script>
+    <script>
     // Used to toggle the menu on small screens when clicking on the menu button
     function myFunction() {
       var x = document.getElementById("navDemo");

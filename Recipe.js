@@ -7,9 +7,9 @@ function getRecipe(id) {
             // display the recipe name
             document.getElementById("title").innerHTML = data.recipeDetails[0].Name;
             // display spice level
-            document.getElementById("spice").innerHTML = `Spice : <b class="text-danger">${'🌶'.repeat(data.recipeDetails[0].SpiceLevel)}</b><b>${'🌶'.repeat(3 - (data.recipeDetails[0].SpiceLevel))}</b>```;
+            document.getElementById("spice").innerHTML = `Spice : <b class="text-danger">${"🌶".repeat(data.recipeDetails[0].SpiceLevel)}</b><b>${"🌶".repeat(3 - (data.recipeDetails[0].SpiceLevel))}</b>`;
             // display method
-            document.getElementById("method").innerHTML = data.recipeDetails[0].Instructions;
+            document.getElementById("method").innerHTML = marked.parse(data.recipeDetails[0].Instructions);
             // display serves
             document.getElementById("serves").setAttribute("value", data.recipeDetails[0].ServingAmount);
             // display image
