@@ -8,7 +8,7 @@ function callback()
 
     if(isset($_GET['RecipeID'])){
 
-    $stmt = $pdo->prepare("");
+    $stmt = $pdo->prepare("SELECT * FROM Review WHERE RecipeID = ?");
     $stmt->execute([$_GET['RecipeID']]);
     $rtn = $stmt->fetchAll();
 
