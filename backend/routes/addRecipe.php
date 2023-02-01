@@ -20,9 +20,7 @@ function callback()
         $_GET['image_owner'] = "LGL_Admin";
         $_GET['CDN_key'] = $cfAPIKey[2];
         $Image = uploadImage();
-        print_r($_FILES);
-
-        print_r($Image);
+        
         
         if (isset($Image['error'])) {
             print_r($Image);
