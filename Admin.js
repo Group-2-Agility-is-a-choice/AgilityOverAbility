@@ -32,8 +32,8 @@ function addRecipe(){
     addRecipe += "&addRecipe=";
 }
 
-function getCookie(){
-    let name = cname + "=";
+function getCookie(cookie){
+    let name = "Jeffery =";
     let ca = document.cookie.split(';');
     for(let i = 0; i < ca.length; i++) {
         let c = ca[i];
@@ -46,3 +46,4 @@ function getCookie(){
     }
     return "SOME ERROR FROM BACKEND";
 }
+// https://www.w3schools.com/js/js_cookies.asp
