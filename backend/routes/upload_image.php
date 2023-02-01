@@ -6,7 +6,7 @@
  * @param array $_GET['CDN_key'] - CDN Key
  * @return array
  */
-function callback() {
+function uploadImage() {
     $rtn = [];
     // Pull CF credentials from secret file, first line api key, second account id, with a LF in between.
     $cfAPIKey = explode("\n", file_get_contents("_secret_CF_Key"));
