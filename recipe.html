@@ -92,10 +92,8 @@
       }
     }
 
-
     function populateStorage() {
-      localStorage.clear();
-      addList(chosenRecipe); //adds items from ingredients to list
+      addList(); //adds items from ingredients to list
     }
 
     const queryParams = new URLSearchParams(window.location.search);
