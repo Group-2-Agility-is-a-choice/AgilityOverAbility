@@ -6,7 +6,7 @@ function callback()
     http_response_code(200);
     $pdo = PDO_config("LGLAdmin", "URlY6qOhsbrXqHr9");
 
-        $stmt = $pdo->prepare("SELECT * FROM Recipe ORDER BY RAND() LIMIT 3");
+        $stmt = $pdo->prepare("SELECT Name, RecipeID, Image FROM Recipe ORDER BY RAND() LIMIT 3");
         $stmt->execute();
         $rtn = $stmt->fetchAll();
     
