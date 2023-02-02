@@ -6,7 +6,7 @@ function callback()
     $pdo = PDO_config("LGLAdmin", "URlY6qOhsbrXqHr9");
 
    
-    if(isset($_GET['Name']) && isset($_GET['SpiceLevel']) && isset($_GET['Instructions']) && isset($_GET['ServingAmount']) && isset($_GET['SweetOrSavoury'])){
+    if(isset($_GET['Content']) && isset($_GET['Rating']) && isset($_GET['RecipeID'])){
 
         $cfAPIKey = explode("\n", file_get_contents("_secret_CF_Key"));
         $_GET['image_owner'] = "LGL_Admin";
@@ -19,8 +19,8 @@ function callback()
         }
     
 
-        $stmt = $pdo->prepare("INSERT INTO `Recipe`( `Name`, `SpiceLevel`, `Instructions`, `ServingAmount`, `SweetOrSavoury` ,`Image`) VALUES (?,?,?,?,?,?)");
-        $stmt->execute([$_GET['Name'],$_GET['SpiceLevel'],$_GET['Instructions'],$_GET['ServingAmount'],$_GET['SweetOrSavoury'], json_decode($Image['content'])->CDN->variants[0]]);
+        $stmt = $pdo->prepare("INSERT INTO `Review`(`Content`, `Rating`, `RecipeID`,`Image`) VALUES (?,?,?,?)");
+        $stmt->execute([$_GET['Content'],$_GET['Rating'],$_GET['RecipeID'], json_decode($Image['content'])->CDN->variants[0]]);
         $rtn = $stmt->fetchAll();
         echo "Added row";
 
@@ -31,13 +31,4 @@ function callback()
     
 
     }
-
-else{
-
-        $rtn = "error invalid login token.";
-     return [
-        "content-type" => "application/json",
-        "content" => json_encode($rtn, JSON_PRETTY_PRINT)
-    ];
- }
 }
