@@ -1,15 +1,25 @@
 function allReviews(RecipeID){
     fetch("backend/?getReviews").then((rtn)=>{
         rtn.json().then((data)=>{
-            let reviewList = "<ul>";
-            data.seachRecipes.foreach((item)=>{
-                reviewList += `<li>${item.Rating} ${item.Content} ${item.Image}</li>`;
-            }); 
-            reviewList += `</ul>`;  
-            document.getElementById("getReviews").innerHTML = recipeList; 
-        })
+            let reviewList = "";
+            data?.forEach((item)=>{
+                reviewList += `<div class=" reviewCard card mb-3 border border-dark" style="max-width: 800px;" ><div class="row no-gutters">
+                <div class="col-md-4">
+                <img src="${item.Image.replace('recipeBig', 'recipeSmall')}" style="height:100%;width:100%;" class="card-img" alt="...">
+                </div>
+                <div class="col-md-8">
+                <div class="card-body">
+                    <h4 class="card-title">${item.Title}</h4>
+                    <p class="card-text mt-4"><small class="text-muted">Rating: ${item.Rating}</small></p>
+                    <p class="card-text"><small class="text-muted">${item.Content}</small></p>
+              </div>
+            </div>
+          </div></div>`;
+        });   
+        document.getElementById("getReviews").innerHTML = reviewList; 
+    })
 
-    });
+});
 }
 
 function createReview(){
