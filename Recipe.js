@@ -52,7 +52,7 @@ function updatePage(id)
             displayList +=`}`; //need to save this and to be returned by getList()
             ingredientsList += "</ul>";
             document.getElementById("ingredients").innerHTML = ingredientsList;
-            console.log(displayList);
+            //console.log(displayList);
         })
 
     });
@@ -93,10 +93,10 @@ function addList() {
     alert("Items added to cart.");//change to modal display
     tempList = JSON.stringify(obj); //need to throw in a try catch?
     localStorage.setItem('storage', tempList);
-    console.log("Temp "+tempList);
+    //console.log("Temp "+tempList);
   } else {
       localStorage.setItem('storage', displayList); //list is empty so add just this
       alert("Items added to cart.");
-      console.log("Display "+displayList);
+      //console.log("Display "+displayList);
   }
 }

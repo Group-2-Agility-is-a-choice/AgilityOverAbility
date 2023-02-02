@@ -65,7 +65,7 @@ function load() {
 
     let storage = localStorage.getItem('storage'); //{1:['bananas',5,'x'],2:['flour',100,'mg']}
     //alert(storage);
-    console.log(storage);
+    //console.log(storage);
 
     try {
       const obj = JSON.parse(storage);
@@ -77,7 +77,7 @@ function load() {
 
       const keys = Object.keys(obj);
       // print all keys
-      console.log(keys); //1:[banana,5,x]
+      //console.log(keys); //1:[banana,5,x]
       // iterate over object
       keys.forEach((key) => {
         //console.log(`${key}: ${obj[0][0]}`);
@@ -124,7 +124,7 @@ function load() {
 function update() {
   let storage = localStorage.getItem('storage'); //{1:['bananas',5,'x'],2:['flour',100,'mg']}
   //alert(storage);
-  console.log(storage);
+  //console.log(storage);
 
   try {
       const obj = JSON.parse(storage);
@@ -136,7 +136,7 @@ function update() {
 
       const keys = Object.keys(obj);
       // print all keys
-      console.log(keys); //1:[banana,5,x]
+      //console.log(keys); //1:[banana,5,x]
       // iterate over object
       var shoppingList = "{";
       let number = 0;
@@ -185,7 +185,7 @@ function update() {
 function remove() {
   let storage = localStorage.getItem('storage'); //{1:['bananas',5,'x'],2:['flour',100,'mg']}
   //alert(storage);
-  console.log(storage);
+  //console.log(storage);
 
   try {
       const obj = JSON.parse(storage);
@@ -197,7 +197,7 @@ function remove() {
 
       const keys = Object.keys(obj);
       // print all keys
-      console.log(keys); //1:[banana,5,x]
+      //console.log(keys); //1:[banana,5,x]
       // iterate over object
       var shoppingList = "{";
       let number = 0;
@@ -214,7 +214,7 @@ function remove() {
         if (document.getElementById(itemID).checked||document.getElementById(itemID2).checked) {
           check = true;
         }
-        console.log(itemID+" "+itemID2+" "+check);
+        //console.log(itemID+" "+itemID2+" "+check);
 
         if (check!=true) {
           let list = "<div class='form-check m-3'><input class='form-check-input' type='checkbox' id='"+item+"Box'><label class='form-check-label' for='"+item+"Box'>"
