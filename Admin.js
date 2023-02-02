@@ -27,8 +27,7 @@ function deleteButton(){
     recipeDelete += "&recipeDelete="
 
 }
-    recipeDelete += "&recipeDelete=";
-}
+
 
 function addRecipe(){
     let addRecipe = "";
