@@ -6,7 +6,7 @@ function callback()
     http_response_code(200);
     $pdo = PDO_config("LGLAdmin", "URlY6qOhsbrXqHr9");
 
-    $stmt = $pdo->prepare("SELECT Ingredient.Name, RecipeIngredients.Quantity, RecipeIngredients.Unit
+    $stmt = $pdo->prepare("SELECT Ingredient.Name, Ingredient.IngredientID, RecipeIngredients.Quantity, RecipeIngredients.Unit
     FROM Recipe 
     JOIN RecipeIngredients ON (Recipe.RecipeID = RecipeIngredients.RecipeID) 
     JOIN Ingredient ON (RecipeIngredients.IngredientID = Ingredient.IngredientID)
