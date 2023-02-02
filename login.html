@@ -25,12 +25,12 @@
         <div class="formMessage formMessageError"></div>
 
         <div class="formInputGroup">
-          <input type="text" class="formInput" autofocus placeholder = "Username">
+          <input type="text" class="formInput" id="user" autofocus placeholder = "Username">
           <div class="formInputErrorMessage"></div>
         </div>
 
         <div class="formInputGroup">
-            <input type="text" class="formInput" autofocus placeholder = "Password">
+            <input type="password" class="formInput" id="pass" autofocus placeholder = "Password">
             <div class="formInputErrorMessage"></div>
         </div>
 
@@ -42,7 +42,7 @@
       </form>
     </div>
 
-    <script> src= "loginJava.js" </script>
+    <script src= "LoginJava.js"></script>
     <script> 
     
     function setFormMessage(formElement, type, message) {
@@ -68,10 +68,8 @@
     const loginForm = document.querySelector("#login");
     loginForm.addEventListener("submit", e => {
         e.preventDefault();
+        passLoginDeets();
 
-        // Perform your AJAX/Fetch login
-
-        setFormMessage(loginForm, "error", "Invalid username or password");
     });
 });
 
