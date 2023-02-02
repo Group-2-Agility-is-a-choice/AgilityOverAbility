@@ -5,6 +5,8 @@
     <title>Recipe</title>
     <meta charset="UTF-8">
     <link rel="icon" type="image/png" href="/icons/android/android-launchericon-48-48.png">
+    <meta name="theme-color" content="#3e5641"/>
+    <link rel="apple-touch-icon" href="icons/apple-touch.png">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
@@ -40,18 +42,16 @@
         <div class="container">
           <div class="row">
             <div class="col-md col-sm-12">
-              <img src="" style="width:100%" id="img">
+              <img src="" style="width:100%" id="img" alt="Recipe Image">
               <!--IMAGE-->
             </div>
             <div class="col-1">
             </div>
             <div class="col-md col-sm-12">
               <h1 class="pt-5" id="title"></h1>
-              <p id="spice"><b class="text-danger"></b><b></b></p> <!--2 spice--> <!--will require "Spice: " in output-->
-              <p>
-                Serves: 
-                <input type="number" id="serves" min="1" onchange="updatePage(chosenRecipe)"></input>
-              </p> <!--will require "Serves: " in output-->
+              <p id="spice"></p> <!--2 spice--> <!--will require "Spice: " in output-->
+              <p>Serves:
+                <input type="number" id="serves" min="1" onchange="updatePage(chosenRecipe)"/></p> <!--will require "Serves: " in output-->
               <div class="ingredients">
                 <h1 class="pt-5">Ingredients</h1>
                 <ul id="ingredients">
@@ -75,52 +75,31 @@
       <p class=""><a href="https://thelittlegreenlarder.com/pages/visiting-the-shop">About Us</a></p>
       <p class="w3-medium">Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
     </footer>
+    <!-- Pull MD rendering lib from https://github.com/markedjs/marked -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
     <script src="Recipe.js"></script>
     <script src="AllIngredients.js"></script>
 
-  <script>
+    <script>
     // Used to toggle the menu on small screens when clicking on the menu button
     function myFunction() {
       var x = document.getElementById("navDemo");
-      if (x.className.indexOf("w3-show") == -1) {
+      if (x.className.indexOf("w3-show") === -1) {
         x.className += " w3-show";
       } else {
         x.className = x.className.replace(" w3-show", "");
       }
     }
 
-    // When the user clicks anywhere outside of the modal, close it
-    var modal = document.getElementById('ticketModal');
-    window.onclick = function(event) {
-      if (event.target == modal) {
-        modal.style.display = "none";
-      }
-    }
-    //validates if local storage is available
-    function supports_html5_storage() {
-      try {
-        return 'localStorage' in window && window['localStorage'] !== null;
-      } catch (e) {
-        return false;
-      }
-    }
-
 
     function populateStorage() {
-      localStorage.clear(); //`{"1":["bananas",5,"x"],"2":["flour",100,"mg"]}`
-      //console.log(JSON.stringify({1:['bananas',5,'x'],2:['flour',100,'mg']}));
-      //let test = `{"1":["bananas",5,"x"],"2":["flour",100,"mg"]}`
+      localStorage.clear();
       addList(chosenRecipe); //adds items from ingredients to list
-      //localStorage.setItem('storage',getList()); //1 is number, banana is item, 5 is amount, x is unit
-      //localStorage.setItem('storage',test);
-      let storage = localStorage.getItem('storage');
-      console.log(storage); //for testing, shows json string if successful
     }
 
     const queryParams = new URLSearchParams(window.location.search);
     const chosenRecipe = queryParams.get('id');
-    console.log(chosenRecipe);
-
     getRecipe(chosenRecipe);
 
   </script>
