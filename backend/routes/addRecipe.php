@@ -5,8 +5,8 @@ function callback()
     http_response_code(200);
     $pdo = PDO_config("LGLAdmin", "URlY6qOhsbrXqHr9");
 
-    $stmt = $pdo->prepare("SELECT sessionToken FROM User");
-    $stmt->execute([]);  
+    $stmt = $pdo->prepare("SELECT sessionToken FROM User WHERE AdminID = ?");
+    $stmt->execute([$_GET['AdminID']]);  
     $tok = $stmt->fetch();
 
    $tok = implode(" ",$tok);
@@ -20,7 +20,7 @@ function callback()
         $_GET['image_owner'] = "LGL_Admin";
         $_GET['CDN_key'] = $cfAPIKey[2];
         $Image = uploadImage();
-        
+       
         
         if (isset($Image['error'])) {
             print_r($Image);
