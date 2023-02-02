@@ -17,3 +17,7 @@ function createReview(){
     edit += document.getElementById("createReview").innerHTML;
     edit += "&createReview=" + item.RecipeID;
 }
+
+function addReviewNumber(){
+    document.getElementById('reviewStars').innerHTML = `<b class="starsReview">${'â­'.repeat(document.getElementById("stars").value)}</b><b>${'â­'.repeat(5 - (document.getElementById("stars").value))}</b>`;
+}
