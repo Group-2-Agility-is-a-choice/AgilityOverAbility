@@ -53,7 +53,7 @@ function passGoods(){
     urlBuilder += "&SweetOrSavoury=" + ((!(document.getElementById("sweet").checked)) ? "1" : "0");
     fetch(urlBuilder).then((rtn)=>{
         rtn.json().then((data)=>{
-            if (data.length >= 0) {
+            if (data.length > 0) {
                 document.getElementById("answerHead").style.backgroundImage = `url("${data[0]?.Image}")`
                 document.getElementById("answerHead").setAttribute('data-id', data[0]?.RecipeID)
                 document.getElementById("answerHead").innerHTML = `<div class="content">
@@ -73,7 +73,8 @@ function passGoods(){
                 });
                 document.getElementById("other-choices").innerHTML = alternates;
             } else {
-                // todo: handle case when no results found
+                // todo: handle case when no results found question - card - answer
+                document.getElementById("question-card-answer").innerHTML = "Sorry, there's currently no recipes available! Come back later and we may have dished up some more!"
             }
             document.getElementById('question-card-answer').setAttribute("data-active","active");
         })
