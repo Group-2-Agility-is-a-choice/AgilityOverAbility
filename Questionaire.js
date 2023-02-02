@@ -104,3 +104,39 @@ function checkAvoids(q) {
             ownedEL.parentElement.style.display = 'none';
     }
 }
+
+// CAROUSEL FUNCTION
+
+//function to get recipe and display to a carousel
+function carouselContents() {
+
+    fetch("backend/?getCarouselRecipes").then((rtn)=>{rtn.json().then((data)=>{
+        for (let i = 0; i < 3; i++) {
+            if (i == 0) {
+                document.getElementById("gallery").innerHTML += 
+                `
+                    <div class="carousel-item active content">
+                        <img src="${data[0].Image}" class="d-block w-100" alt="picture of ${data[0].Name}">
+                        <div class="carousel-caption">
+                            <h1>${data[0].Name}</h1>
+                            <button class="btn button" onclick="window.location = 'recipe.html?id=${data[0].RecipeID}'">COOK NOW</button></a>
+                        </div>
+                        </div>
+                    </div>
+                `
+            }
+            else {
+                document.getElementById("gallery").innerHTML += 
+                `
+                    <div class="carousel-item content">
+                        <img src="${data[0].Image}" class="d-block w-100" alt="picture of ${data[0].Name}">
+                        <div class="carousel-caption">
+                            <h1>${data[i].Name}</h1>
+                            <button class="btn button" onclick="window.location = 'recipe.html?id=${data[i].RecipeID}'">COOK NOW</button></a>
+                        </div>
+                    </div>
+                `
+            }
+        }
+    })});
+}
