@@ -16,7 +16,7 @@ function callback()
     else{
         
         $stmt = $pdo->prepare("SELECT * FROM Review");
-        $stmt->execute([$_GET['RecipeID']]);
+        $stmt->execute([]);
         $rtn = $stmt->fetchAll();
 
     }
