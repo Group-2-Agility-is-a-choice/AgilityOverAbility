@@ -53,7 +53,7 @@ function passGoods(){
     urlBuilder += "&SweetOrSavoury=" + ((!(document.getElementById("sweet").checked)) ? "1" : "0");
     fetch(urlBuilder).then((rtn)=>{
         rtn.json().then((data)=>{
-            if (data.length >= 0) {
+            if (data.length > 0) {
                 document.getElementById("answerHead").style.backgroundImage = `url("${data[0]?.Image}")`
                 document.getElementById("answerHead").setAttribute('data-id', data[0]?.RecipeID)
                 document.getElementById("answerHead").innerHTML = `<div class="content">
