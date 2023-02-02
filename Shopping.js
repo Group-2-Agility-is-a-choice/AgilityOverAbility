@@ -1,4 +1,64 @@
 load();
+let qrScanner;
+let camera = 'environment';
+let current_basket = [];
+
+if (window.location.href.includes("?")) {
+  localStorage.setItem("storage", JSON.parse(LZString.decompressFromEncodedURIComponent(window.location.href.split("?")[1])));
+  update();
+}
+
+const qrCode = new QRCode(document.getElementById("qrcode"), {
+  text: "https://lgl.genav.ch/shopping.html?" + LZString.compressToEncodedURIComponent(JSON.stringify(localStorage.getItem('storage'))),
+  width: 512,
+  height: 512,
+  colorDark: "#ffffff",
+  colorLight: "#3E5641",
+  correctLevel: QRCode.CorrectLevel.L
+});
+
+function showQRCode() {
+  document.getElementById('qrDialogue').style.display = "block";
+  qrCode.clear();
+  qrCode.makeCode("https://lgl.genav.ch/shopping.html?" + LZString.compressToEncodedURIComponent(JSON.stringify(localStorage.getItem('storage'))));
+}
+
+function scanCode() {
+  document.getElementById('scannerDialogue').style.display = 'block';
+  qrScanner = new QrScanner(
+      document.getElementById("video"),
+      (camQrResult, _) => {
+        let list = "";
+        if (camQrResult.data.startsWith("https://lgl.genav.ch/shopping.html?")) {
+          localStorage.setItem("storage", JSON.parse(LZString.decompressFromEncodedURIComponent(camQrResult.data.replace("https://lgl.genav.ch/shopping.html?", ""))));
+          update();
+          document.getElementById("scannerDialogue").style.display = 'none';
+          qrScanner.destroy();
+          document.getElementById('cameraLoading').style.display = 'block';
+          document.getElementById('buttons').style.display = 'none';
+        }
+      }, {
+        onDecodeError: (error)=>{
+          if (error !== "Scanner error: No QR code found" && error !== QrScanner.NO_QR_CODE_FOUND)
+            console.error(error);
+        },
+        highlightScanRegion: true,
+        highlightCodeOutline: true,
+      },
+  );
+  qrScanner.setInversionMode('both');
+  qrScanner.start().then(()=>{
+    document.getElementById('cameraLoading').style.display = 'none'
+    document.getElementById('buttons').style.display = 'flex';
+  });
+}
+
+function closeCam() {
+  document.getElementById('scannerDialogue').style.display = 'none';
+  document.getElementById('buttons').style.display = 'none';
+  document.getElementById('cameraLoading').style.display = 'block';
+  qrScanner.destroy();
+}
 
 function load() {
   if(localStorage.length!=0) {
