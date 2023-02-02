@@ -115,7 +115,7 @@ function carouselContents() {
             if (i == 0) {
                 document.getElementById("gallery").innerHTML += 
                 `
-                    <div class="carousel-item active content">
+                    <div class="carousel-item active content carrousel-bg carouselImg">
                         <img src="${data[0].Image}" class="d-block w-100" alt="picture of ${data[0].Name}">
                         <div class="carousel-caption">
                             <h1>${data[0].Name}</h1>
@@ -128,8 +128,8 @@ function carouselContents() {
             else {
                 document.getElementById("gallery").innerHTML += 
                 `
-                    <div class="carousel-item content">
-                        <img src="${data[0].Image}" class="d-block w-100" alt="picture of ${data[0].Name}">
+                    <div class="carousel-item content carrousel-bg carouselImg">
+                        <img src="${data[i].Image}" class="d-block w-100" alt="picture of ${data[i].Name}">
                         <div class="carousel-caption">
                             <h1>${data[i].Name}</h1>
                             <button class="btn button" onclick="window.location = 'recipe.html?id=${data[i].RecipeID}'">COOK NOW</button></a>
