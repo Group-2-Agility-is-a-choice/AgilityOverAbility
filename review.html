@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <title>Admin - Reviews</title>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="/icons/android/android-launchericon-48-48.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="reviewStyles.css">
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Bungee+Inline&display=swap');
+
+
+
+      /* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 200px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+  
+  /* Modal Content */
+  .modal-content {
+    position: relative;
+    background-color:#FFFFFF;
+    margin: auto;
+    padding: 0;
+    border: 1px solid #888;
+    width: 80%;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s
+  }
+  
+  /* Add Animation */
+  @-webkit-keyframes animatetop {
+    from {top:-300px; opacity:0} 
+    to {top:0; opacity:1}
+  }
+  
+  @keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+  }
+  
+  /* The Close Button */
+  .close {
+    color: white;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
+  .modal-header {
+    padding: 2px 16px;
+    background-color:#3E5641;
+    color: white;
+  }
+  
+  .modal-body {padding: 2px 16px;}
+
+  
+  #myBtn{
+    background-color: #f44336;
+    font-family: 'Bungee Inline', cursive;
+    color:#FFFFFF;
+    border:#f44336; 
+  }
+
+/* Add a color to the cancel button */
+.cancelbtn {
+  background-color: #ccc;
+  color: black;
+  float: left;
+  width: 45%;
+  padding: 5px;
+  margin: 5px;
+  border: #ccc;
+}
+
+/* Add a color to the delete button */
+.deletebtn {
+  background-color: #f44336;
+  float: right;
+  width: 45%;
+  padding: 5px;
+  margin: 5px;
+  border: #f44336;
+}
+    </style>
+
+  </head>
+  <body>
+    <!-- Navbar -->
+    <div class="w3-top" style="height:120px; line-height: calc(120px - 3rem);">
+      <div class="w3-bar nav-bar w3-card">
+        <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right sizing" href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars" style="font-size:90pt"></i></a>
+        <a href="index.html"><img class="w3-bar-item" style="height: 120px" src="logo-white.svg"></a>
+        <a href="https://thelittlegreenlarder.com/collections/meal-bags" class="w3-bar-item w3-button p-3 pt-5 w3-hide-small sizing">Meal Bags</a>
+        <a href="search.html" class="w3-bar-item w3-button p-3 pt-5 w3-hide-small sizing">Recipes</a>
+        <a href="shopping.html" class="w3-bar-item w3-button p-3 pt-5 w3-hide-small sizing w3-right">Shopping List</a>
+      </div>
+    </div>
+
+    <!-- Navbar on small screens (remove the onclick attribute if you want the navbar to always show on top of the content when clicking on the links) -->
+    <div id="navDemo" class="w3-bar-block nav-bar w3-hide  w3-hide-large w3-hide-medium w3-top" style="margin-top:120px">
+      <a href="index.html" class="w3-bar-item w3-button" onclick="myFunction()">Home</a>
+      <a href="https://thelittlegreenlarder.com/collections/meal-bags" class="w3-bar-item w3-button" onclick="myFunction()">Meal Bags</a>
+      <a href="admin.html" class="w3-bar-item w3-button" onclick="myFunction()">Edit Recipes</a>
+      <a href="review.html" class="w3-bar-item w3-button" onclick="myFunction()">Reviews</a>
+    </div>
+
+    <div class="w3-main" style="margin-top:150px">
+
+      <div class="container">
+        <div class="row">
+          <div class="col-md-7 col-sm-12">
+
+            <div class="input-group mb-3" style="max-width:800px">
+          
+          </div>
+
+          <div id="getReviews">
+            
+            <div id="deleteReview">
+              <!-- Trigger/Open The Modal -->
+              <button id="myBtn"></button>
+
+              <!-- The Modal -->
+              
+            </div>
+
+          </div>
+
+          </div>
+
+          
+        </div>
+      </div>
+      <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2>Delete Recipe</h2>
+            
+            <span class="close">&times;</span>
+          </div>
+          <div class="modal-body">
+            <p>Are you sure you want to delete this review?</p>
+            <div class="clearfix">
+              <button type="button" class="cancelbtn" onclick="this.parentElement.parentElement.parentElement.parentElement.style.display = 'none';">Cancel</button>
+              <button type="button" class="deletebtn" onclick="deleteReview()">Delete</button>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+      
+
+      
+
+
+    <!-- Footer -->
+  <footer class="w3-container w3-padding-64 w3-center w3-opacity w3-light-grey w3-xlarge">
+    <p class="w3-medium">Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
+  </footer>
+  </div>
+
+  <script src="Review.js"></script> 
+
+ 
+
+  <script>
+    // Used to toggle the menu on small screens when clicking on the menu button
+    function myFunction() {
+      var x = document.getElementById("navDemo");
+      if (x.className.indexOf("w3-show") == -1) {
+        x.className += " w3-show";
+      } else {
+        x.className = x.className.replace(" w3-show", "");
+      }
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    var modal = document.getElementById('ticketModal');
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+
+    allReviews();
+
+            // When the user clicks anywhere outside of the modal, close it
+            var modal = document.getElementById('ticketModal');
+        window.onclick = function(event) {
+          if (event.target == modal) {
+            modal.style.display = "none";
+          }
+        }
+
+
+                    // Get the modal
+            var modal = document.getElementById("myModal");
+
+            // Get the button that opens the modal
+            var btn = document.getElementById("myBtn");
+
+            // Get the <span> element that closes the modal
+            var span = document.getElementsByClassName("close")[0];
+
+            // When the user clicks the button, open the modal 
+            btn.onclick = function() {
+              modal.style.display = "block";
+            }
+
+            // When the user clicks on <span> (x), close the modal
+            span.onclick = function() {
+              modal.style.display = "none";
+            }
+
+            // When the user clicks anywhere outside of the modal, close it
+            window.onclick = function(event) {
+              if (event.target == modal) {
+                modal.style.display = "none";
+              }
+            }
+
+  </script>
+</body>
+
+</html>
