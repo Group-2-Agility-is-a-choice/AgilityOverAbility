@@ -159,6 +159,34 @@
             <h1 class="pt-5 p-3">Method</h1>
             <p id="method"></p>
           </div>
+        </div>
+        <form action="reviewForm" method="post">
+          <ul>
+            <div id="starLevel" style="display: none">
+              <label for="star">How many stars?</label>
+              <input onmousemove="starInput()" onchange="starInput()" id="star" max="5" min="0" value="2" type="range">
+              <label id="starReview"><b class="text-warning">⭐⭐</b><b>⭐</b></label>
+            </div>
+            <li>
+              <label for="Title">Title:</label>
+              <input type="text" id="title" name="review-title" />
+            </li>
+            <li>
+              <label for="Description">Description:</label>
+              <textarea type="text" id="description" name="review-description"></textarea>
+            </li>
+            <li>
+              <label for="Image">Image:</label>
+              <input type="file" id="image" name="review-image"></input>
+            </li>
+            <div>
+              <li class="review-button" onclick="submitReview()">
+                <button>Submit Review!</button>
+              </li>
+            </div>
+          </ul>
+        </form>
+      </div>
           <div class = "reviewContainer">
             <h1 class="pt-5 p-3">Reviews</h1>
             <div class = "comments" id = "reviews">

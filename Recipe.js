@@ -129,3 +129,11 @@ function addList(id) {
 function closeButton(){
     document.getElementById("myModal").style.display = "none";
 }
+
+function submitReview(){
+    review = "&addReview" + `&RecipeID=${chosenRecipe}`+ document.getElementById("title") + `&RecipeID=${chosenRecipe}`+ document.getElementById("description") + `&RecipeID=${chosenRecipe}`+ document.getElementById("image");
+}
+
+function starInput() {
+    document.getElementById('starReview').innerHTML = `<b class="text-warning">${'⭐'.repeat(document.getElementById("spice").value)}</b><b>${'⭐'.repeat(5 - (document.getElementById("star").value))}</b>`;
+}
