@@ -44,7 +44,7 @@ function displayRecipes(){
                   <div class="card-body">
                     <h4 class="card-title"><a href="recipe.html?id=${item.RecipeID}">${item.Name}</h4></a>
                     <p class="card-text mt-4"><small class="text-muted">Spice: <b class="text-danger">${'🌶'.repeat(item.Spicelevel)}</b><b>${'🌶'.repeat(3 - (item.Spicelevel))}</b></small></p>
-                    <p class="card-text mt-4"><small class="text-muted">Rating: <b class="text-warning">${'⭐'.repeat(item.RatingAVG)}</b><b>${'⭐'.repeat((item.RatingAVG))}</b></small></p>
+                    <p class="card-text mt-4"><small class="text-muted">Rating: <b>${'⭐'.repeat(item.RatingAVG)}</b></small></p>
                     <p class="card-text"><small class="text-muted">Serves: ${item.ServingAmount}</small></p>
                   </div>
                 </div>
