@@ -42,7 +42,7 @@ function callback()
             $stmt->execute([$_GET['Name']]);
             $recipeID = $stmt->fetch();
             $recipeID = implode(" ",$recipeID);
-                print_r($recipeID);
+                
 
             for ($x = 0; $x < $size; $x++) {
 
@@ -53,7 +53,6 @@ function callback()
                 $stmt->execute([$ingredient_Name[$x]]);
                 $ingredientID = $stmt->fetch();
                 $ingredientID = implode(" ",$ingredientID);
-                print_r($ingredientID);
 
                 $stmt = $pdo->prepare("INSERT INTO `RecipeIngredients`(`RecipeID`, `IngredientID`, `Quantity`, `Unit`) VALUES (?,?,?,?)");
                 $stmt->execute([$recipeID,$ingredientID,$_GET['Quantity'][$x],$_GET['Unit'][$x]]);
