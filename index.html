@@ -84,10 +84,9 @@
     }
 
     .carrousel {
-        background: url("https://imagedelivery.net/6wTLslqHIfbRpGZtwgi4Mg/4f473512-82ee-40a7-653f-9c193b6f2b00/original") center;
         background-size: cover;
         padding: 1em 5vw;
-        margin: 135px 0 0 0;
+        margin: 129px 0 0 0;
         width: 100vw;
         height: 20vh;
         color: white;
@@ -306,27 +305,28 @@
 </head>
 <body>
 <!-- Navbar -->
-<div class="w3-top" style="height:120px">
+<div class="w3-top" style="height:120px; line-height: calc(120px - 3rem);">
     <div class="w3-bar nav-bar w3-card">
-        <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right sizing" href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars" style="font-size:90pt"></i></a>
-        <a href="index.html"><img class="w3-bar-item" style="height: 120px" src="logo-white.svg"></a>
-        <a href="search.html" class="w3-bar-item w3-button p-5 w3-hide-small sizing">Recipes</a>
-        <a href="shopping.html" class="w3-bar-item w3-button p-5 w3-hide-small sizing w3-right">Shopping List</a>
+      <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right sizing" href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars" style="font-size:90pt"></i></a>
+      <a href="index.html"><img class="w3-bar-item" style="height: 120px" src="logo-white.svg"></a>
+      <a href="https://thelittlegreenlarder.com/collections/meal-bags" class="w3-bar-item w3-button p-3 pt-5 w3-hide-small sizing">Meal Bags</a>
+      <a href="search.html" class="w3-bar-item w3-button p-3 pt-5 w3-hide-small sizing">Recipes</a>
+      <a href="shopping.html" class="w3-bar-item w3-button p-3 pt-5 w3-hide-small sizing w3-right">Shopping List</a>
     </div>
-</div>
+  </div>
 
 <!-- Navbar on small screens (remove the onclick attribute if you want the navbar to always show on top of the content when clicking on the links) -->
 <div id="navDemo" class="w3-bar-block nav-bar w3-hide  w3-hide-large w3-hide-medium w3-top" style="margin-top:120px">
     <a href="index.html" class="w3-bar-item w3-button" onclick="myFunction()">Home</a>
+    <a href="https://thelittlegreenlarder.com/collections/meal-bags" class="w3-bar-item w3-button" onclick="myFunction()">Meal Bags</a>
     <a href="search.html" class="w3-bar-item w3-button" onclick="myFunction()">Recipes</a>
     <a href="shopping.html" class="w3-bar-item w3-button" onclick="myFunction()">Shopping List</a>
 </div>
 
-<div class="carrousel">
+<div class="carrousel" id="galleryImg">
     <!-- Carrousel -->
-    <div class="content">
-        <h1>Sweet Potato and Chick Pea Curry</h1>
-        <button class="btn button" onclick="window.location = 'recipe.html?id=1'">COOK NOW</button></a>
+    <div class="content" id="gallery">
+        <!--CAROUSEL CONTENT-->
     </div>
     <div class="carrousel-bg"></div>
 </div>
@@ -410,6 +410,7 @@
     <p class="w3-medium">Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
 </footer>
 <script src="Questionaire.js"></script>
+<script src="Carousel.js"></script>
 <script>
     // Used to toggle the menu on small screens when clicking on the menu button
     function myFunction() {
