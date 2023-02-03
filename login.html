@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <title>Admin - Log In</title>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="/icons/android/android-launchericon-48-48.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="loginStyles.css">
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Bungee+Inline&display=swap');
+    </style>
+
+  
+  </head>
+  <body>
+
+    <div class = "container">
+      <form class="form" id="login">
+        <h1 class = "formTitle">Login</h1>
+        <div class="formMessage formMessageError"></div>
+
+        <div class="formInputGroup">
+          <input type="text" class="formInput" id="user" autofocus placeholder = "Username">
+          <div class="formInputErrorMessage"></div>
+        </div>
+
+        <div class="formInputGroup">
+            <input type="password" class="formInput" id="pass" autofocus placeholder = "Password">
+            <div class="formInputErrorMessage"></div>
+        </div>
+
+        <button class="formButton" type="submit">Log In</button>
+        <p class="formText">
+            <a href="index.html" class="formLink"> Back to home</a>
+        </p>
+
+      </form>
+    </div>
+
+    <script src= "LoginJava.js"></script>
+    <script> 
+    
+    function setFormMessage(formElement, type, message) {
+        const messageElement = formElement.querySelector(".formMessage");
+    
+        messageElement.textContent = message;
+        messageElement.classList.remove("formMessage--success", "formMessage--error");
+        messageElement.classList.add(`formMesssage--${type}`);
+    }
+
+    
+    function setInputError(inputElement, message) {
+        inputElement.classList.add("formInput--error");
+        inputElement.parentElement.querySelector(".formInputErrorMessage").textContent = message;
+    }
+    
+    function clearInputError(inputElement) {
+        inputElement.classList.remove("formInput--error");
+        inputElement.parentElement.querySelector(".formInputErrorMessage").textContent = "";
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+    const loginForm = document.querySelector("#login");
+    loginForm.addEventListener("submit", e => {
+        e.preventDefault();
+        passLoginDeets();
+
+    });
+});
+
+
+    
+
+    </script>
+</body>
+
+</html>
+

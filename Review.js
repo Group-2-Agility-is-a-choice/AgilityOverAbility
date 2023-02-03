@@ -18,14 +18,14 @@ function allReviews(){
                 <div class="col-md-8">
                 <div class="card-body">
                     <h4 class="card-title">${item.Title}</h4>
-                    <p class="card-text mt-4"><small class="text-muted">Rating: ${item.Rating}</small></p>
+                    <p class="card-text mt-4"><small class="text-muted">Rating: ${'⭐'.repeat(item.Rating)}</small></p>
                     <p class="card-text"><small class="text-muted">${item.Content}</small></p>
-                    <button id="myBtn" onclick="deleteButton(this.getAttribute('data-id'))"  data-id = "${item.ReviewID}">Delete </button> 
+                    <button id="myBtn" onclick="deleteButton(this.getAttribute('data-id'))"  data-id = "${item.ReviewID}">Delete </button>
               </div>
             </div>
           </div></div>`;
-        });   
-        document.getElementById("getReviews").innerHTML = reviewList; 
+        });
+        document.getElementById("getReviews").innerHTML = reviewList;
     })
 
 });
@@ -37,24 +37,39 @@ function deleteButton(id){
     modal.setAttribute("data-id", id);
 }
 
-function createReview(){
-            let review = "";
-            review += document.getElementById("addReview").innerHTML;
-            review += "&addReview=" + item.RecipeID;
-            var starAmount = document.getElementById('reviewStars').innerHTML = `<b class="starsReview">${'⭐'.repeat(document.getElementById("stars").value)}</b><b>${'⭐'.repeat(5 - (document.getElementById("stars").value))}</b>`;
-            starAmount += "&addReview" + item.RecipeID;
-    fetch("backend/?addReview").then((rtn)=>{
-        rtn.json().then((data)=>{
-        })
-    })
-}
-
 function deleteReview(){
     let id = document.getElementById("myModal").getAttribute('data-id')
-    fetch("backend/?deleteReview&ReviewID="+id).then((rtn)=>{
+    fetch("backend/?deleteReview&ReviewID="+id + "&sessionToken=" + getCookie('Jeffery')).then((rtn)=>{
         rtn.json().then((data)=>{
             let id = document.getElementById("myModal").style.display = 'none';
             allReviews();
         })
     })
 }
+
+
+function getCookie(cname) {
+    let name = cname + "=";
+    let decodedCookie = decodeURIComponent(document.cookie);
+    let ca = decodedCookie.split(';');
+    for(let i = 0; i <ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+// https://www.w3schools.com/js/js_cookies.asp
+
+
+
+fetch("backend/?authenticate&sessionToken=" + getCookie("Jeffery")).then((dta)=>{
+    dta.text().then((val)=>{
+        if (val === "no")
+            window.location.replace("login.html");
+    })
+})
