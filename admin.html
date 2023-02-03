@@ -176,17 +176,19 @@
                 </div>
               </div>
 
-              <div id="editModal" class="w3-modal">
+              <div id="editModal" class="w3-modal" data-id="recipeID">
                 <div class="w3-modal-content w3-card-4 w3-animate-zoom p-3" style="margin-top:100px;max-width:600px">
                   <div class="modal-header">
                     <h2>Edit Recipe</h2>
                   </div>
                   <div class="d-flex" style="gap: 1em;">
-                  <img id="eimg" style="height:20em" src=""> <!--upload image option-->
+                  <img id="eimg" style="height:20em" src="" onclick="document.getElementById('imageUpload').click()"> <!--upload image option-->
+                      <input type="file" id="imageUpload" class="d-none">
                   <div>
                   <p>Title:<input type='text' id='etitle' style='width:50%;' value='' placeholder=''></p>
                   <p>Spice:<input type='number' id='espice' style='width:50%;' min='0' max='3' value='' placeholder=''></p>
-                  <p>Serves:<input type='number' id='eserve' style='width:50%;' min='1' value='' placeholder=''></p>
+                  <p>Serves:<input type='number' id='eserve' style='width:50%;' value='' placeholder=''></p>
+                  <p>Meal Type:<input name="sweet" checked type='radio' id='esweet' value='0' placeholder=''><label>Sweet</label><input type='radio' name="sweet" id='esavor' value='1' placeholder=''><label>Savoury</label></p>
                   </div>
                   </div>
                   <div>
@@ -200,7 +202,7 @@
                   </div>
                   <div class="w3-container w3-border-top w3-padding-16 w3-light-grey">
                     <button onclick="document.getElementById('editModal').style.display='none'" type="button" class="w3-button bg-success text-light">Cancel</button>
-                    <button onclick="document.getElementById('editModal').style.display='none';confirmEdit()" type="button" class="w3-button w3-red editBtn">Confirm</button><!--Include function-->
+                    <button onclick="confirmEdit()" type="button" class="w3-button w3-red editBtn">Confirm</button><!--Include function-->
                   </div>
                 </div>
               </div>

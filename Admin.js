@@ -37,9 +37,9 @@ function editbutton(id){
           let ingredientHTML = "";
           num = 0;
           data.ingredients.forEach((item) => {
-              ingredientHTML += "<input type='number' id='"+num+"Amount' min='0' style='width:50px;' value='"+item.Quantity+"' placeholder='"+item.Quantity+"'>";
-              ingredientHTML += "<input type='text' id='"+num+"Unit' style='width:50px;' value='"+item.Unit+"' placeholder='"+item.Unit+"'>";
-              ingredientHTML += "<input type='text' id='"+num+"Name' style='width:200px;' value='"+item.Name+"' placeholder='"+item.Name+"'>";
+              ingredientHTML += "<input type='number' class='input-quantity' data-id='"+num+"' min='0' style='width:50px;' value='"+item.Quantity+"' placeholder='"+item.Quantity+"'>";
+              ingredientHTML += "<input type='text' class='input-unit' data-id='"+num+"' style='width:50px;' value='"+item.Unit+"' placeholder='"+item.Unit+"'>";
+              ingredientHTML += "<input type='text' class='input-ingredient' data-id='"+num+"' style='width:200px;' value='"+item.Name+"' placeholder='"+item.Name+"'>";
               ingredientHTML += "<button onclick='removeEdit("+num+")' type='button' class='button bg-danger text-light'>Remove</button><br>";
               let ingredient = {
                 "num": num,
@@ -84,7 +84,34 @@ function removeEdit(id){
 }
 
 function confirmEdit() {
-  //EXECUTES THE DATA INTO DATABASE AND STUFF
+    if (document.getElementById('editModal').getAttribute("data-id") == 'recipeID') {
+        let url = "backend/?editRecipe";
+        for (let inputField of document.getElementsByClassName("input-quantity")) {
+            url += "&Quantity[]=" + encodeURIComponent(inputField.value);
+        }
+        for (let inputField of document.getElementsByClassName("input-unit")) {
+            url += "&Unit[]=" + encodeURIComponent(inputField.value);
+        }
+        for (let inputField of document.getElementsByClassName("input-ingredient")) {
+            url += "&Ingredient_Name[]=" + encodeURIComponent(inputField.value);
+        }
+        url += `&SpiceLevel=${encodeURIComponent(document.getElementById('espice').value)}`
+        url += `&ServingAmount=${encodeURIComponent(document.getElementById('eserve').value)}`
+        url += `&SweetOrSavoury=${encodeURIComponent(document.getElementById('esavor').checked ? 1 : 0)}`
+        url += `&Name=${encodeURIComponent(document.getElementById('etitle').value)}`
+        url += `&Instructions=${encodeURIComponent(document.getElementById('emethod').innerHTML)}`
+        url += `&sessionToken=${encodeURIComponent(getCookie("Jeffery"))}`
+        url += `&RecipeID=${encodeURIComponent(document.getElementById('editModal').getAttribute("data-id"))}`
+
+        var data = new FormData()
+        data.append('file', document.getElementById('imageUpload').files[0])
+        fetch(url, {
+            "method":"POST",
+            "body":data,
+            headers:{'Content-Type':"application/x-www-form-urlencoded; charset=UTF-8"}
+        });
+    }
+    document.getElementById('editModal').style.display='none';
 }
 
 function removeAdd(id){
