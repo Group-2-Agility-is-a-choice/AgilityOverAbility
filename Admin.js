@@ -88,15 +88,16 @@ function confirmEdit() {
 }
 
 function removeAdd(id){
+  
   let parsed_ingredients = JSON.parse(jsond_ingredients); //save everything else first or new fields deleted
   let ingredientHTML = "";
   current_ingredients = [];
   num = 0;
   parsed_ingredients.forEach((item) => {
       if (id!=item.num) {
-        ingredientHTML += "<input type='number' id='"+num+"Amount' min='0' style='width:50px;' value='"+item.Quantity+"' placeholder='"+item.Quantity+"'>";
-        ingredientHTML += "<input type='text' id='"+num+"Unit' style='width:50px;' value='"+item.Unit+"' placeholder='"+item.Unit+"'>";
-        ingredientHTML += "<input type='text' id='"+num+"Name' style='width:200px;' value='"+item.Name+"' placeholder='"+item.Name+"'>";
+        ingredientHTML += "<input type='number' id='"+num+"Amount' min='0' style='width:50px;' value='"+item.Quantity+"'>";
+        ingredientHTML += "<input type='text' id='"+num+"Unit' style='width:50px;' value='"+item.Unit+"'>";
+        ingredientHTML += "<input type='text' id='"+num+"Name' style='width:200px;' value='"+item.Name+"'>";
         ingredientHTML += "<button onclick='removeEdit("+num+")' type='button' class='button bg-danger text-light'>Remove</button><br>";
         let ingredient = {
           "num": num,
@@ -158,6 +159,10 @@ function deleteRecipe(){
 function addRecipe(){
     document.getElementById("addModal").style.display = "block";
     current_ingredients = [];
+}
+
+function confirmAdd() {
+  //add items to DB
 }
 
 function passRecipe(){
