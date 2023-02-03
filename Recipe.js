@@ -29,7 +29,7 @@ function getRecipe(id) {
             });
             ingredientsList += "</ul>";
             stringd = JSON.stringify(displayList);
-            console.log(stringd);
+            //console.log(stringd);
             document.getElementById("ingredients").innerHTML = ingredientsList;
         })
 
@@ -59,7 +59,7 @@ function updatePage(id)
                 displayList.push(ingredient);
             });
             stringd = JSON.stringify(displayList);
-            console.log(stringd);
+            //console.log(stringd);
             ingredientsList += "</ul>";
             document.getElementById("ingredients").innerHTML = ingredientsList;
         })
@@ -68,7 +68,7 @@ function updatePage(id)
 
 function addList() {
     if (localStorage.length != 0) {
-      //try{
+      try{
         let storage = localStorage.getItem('storage');
         let obj = JSON.parse(storage);
         let ingObj = JSON.parse(stringd); //updated ingredient list
@@ -81,7 +81,7 @@ function addList() {
           obj.forEach((loop)=>{ //look if current item is in basket
             if (item.name==loop.name) {
               loop.amount += item.amount;
-              console.log(item.name);
+              //console.log(item.name);
               found = true;
             }
           })
@@ -101,14 +101,15 @@ function addList() {
     alert("Items added to cart.");//change to modal display
     tempList = JSON.stringify(obj);
     localStorage.setItem('storage', tempList);
-    console.log("Temp "+tempList);
-  //} catch {
+    //console.log("Temp "+tempList);
+  } catch {
     //error somewhere
-    //alert("Error adding items to cart.");
-  //}
+    alert("Error adding items to cart.");
+    localStorage.clear();
+  }
   } else {
       localStorage.setItem('storage', stringd); //list is empty so add just this
       alert("Items added to cart.");
-      console.log("Display "+stringd);
+      //console.log("Display "+stringd);
   }
 }

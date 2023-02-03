@@ -67,7 +67,7 @@ function load() {
     //alert(storage);
     //console.log(storage);
 
-    //try {
+    try {
       const obj = JSON.parse(storage);
 
       //5x bananas
@@ -103,14 +103,15 @@ function load() {
         document.getElementById("remove").classList.remove("hide");
         document.getElementById("empty").classList.remove("hide");
         document.getElementById("share").classList.remove("hide");
-    /*} catch {
+    } catch {
       let empty = "<p>Your shopping cart is empty.</p>"//or error
       document.getElementById("shopping").innerHTML = empty;
       document.getElementById("save").classList.add("hide");
       document.getElementById("edit").classList.add("hide");
       document.getElementById("remove").classList.add("hide");
       document.getElementById("empty").classList.add("hide");
-    }*/
+      document.getElementById("share").classList.add("hide");
+    }
   } else {
     let empty = "<p>Your shopping cart is empty.</p>"
     document.getElementById("shopping").innerHTML = empty;
@@ -128,7 +129,7 @@ function update() {
   //alert(storage);
   //console.log(storage);
 
-  //try {
+  try {
       const obj = JSON.parse(storage);
 
       let newList = "";
@@ -171,9 +172,9 @@ function update() {
           empty();
         }
 
-    //} catch {
+    } catch {
       //error
-    //}
+    }
 }
 
 function remove() {
@@ -181,7 +182,7 @@ function remove() {
   //alert(storage);
   //console.log(storage);
 
-  //try {
+  try {
       const obj = JSON.parse(storage);
 
       let newList = "";
@@ -195,7 +196,7 @@ function remove() {
         let itemID = item.num+"Box";
         let itemID2 = item.num+"EditBox";
         let check = false;
-        console.log(itemID);
+        //console.log(itemID);
         if (document.getElementById(itemID).checked||document.getElementById(itemID2).checked) {
           check = true;
         }
@@ -230,9 +231,9 @@ function remove() {
         }else  {
           empty();
         }
-    //} catch {
+    } catch {
       //error
-    //}
+    }
 }
 
 function empty() {
