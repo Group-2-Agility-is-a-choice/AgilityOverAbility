@@ -30,7 +30,7 @@ function callback()
         $stmt = $pdo->prepare("INSERT INTO `Recipe`( `Name`, `SpiceLevel`, `Instructions`, `ServingAmount`, `SweetOrSavoury` ,`Image`) VALUES (?,?,?,?,?,?)");
         $stmt->execute([$_GET['Name'],$_GET['SpiceLevel'],$_GET['Instructions'],$_GET['ServingAmount'],$_GET['SweetOrSavoury'], json_decode($Image['content'])->CDN->variants[0]]);
         $rtn = $stmt->fetchAll();
-        echo "Added row";
+       
 
         
         if (isset($_GET['Ingredient_Name']) && isset($_GET['Quantity']) && isset($_GET['Unit'])) {
@@ -48,7 +48,7 @@ function callback()
 
                 $stmt = $pdo->prepare("INSERT INTO Ingredient (`Name`) SELECT(?) WHERE NOT EXISTS( SELECT* FROM Ingredient WHERE `Name` = ?)");
                 $stmt->execute([$ingredient_Name[$x], $ingredient_Name[$x]]);
-                echo "\nIgredient inserted";
+              
                 $stmt = $pdo->prepare("SELECT `IngredientID` FROM `Ingredient` WHERE `Name` = ?");
                 $stmt->execute([$ingredient_Name[$x]]);
                 $ingredientID = $stmt->fetch();
@@ -56,7 +56,7 @@ function callback()
 
                 $stmt = $pdo->prepare("INSERT INTO `RecipeIngredients`(`RecipeID`, `IngredientID`, `Quantity`, `Unit`) VALUES (?,?,?,?)");
                 $stmt->execute([$recipeID,$ingredientID,$_GET['Quantity'][$x],$_GET['Unit'][$x]]);
-                echo "\njoining row created";
+                
             }     
    
         }
