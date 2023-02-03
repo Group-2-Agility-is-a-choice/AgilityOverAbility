@@ -39,6 +39,19 @@ function callback()
         "content" => json_encode($rtn, JSON_PRETTY_PRINT)
         ];
 
+    }else{
+
+        http_response_code(403);
+     $rtn = [
+           "error"=>"Invalid Credentials"
+        ];
+    
+        
+    return [
+        "content-type" => "application/json",
+        "content" => json_encode($rtn, JSON_PRETTY_PRINT)
+        ];
+
     }
 
 
