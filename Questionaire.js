@@ -105,3 +105,5 @@ function checkAvoids(q) {
             ownedEL.parentElement.style.display = 'none';
     }
 }
+
+

@@ -11,10 +11,9 @@
     }
 
     .carrousel {
-        background: url("https://imagedelivery.net/6wTLslqHIfbRpGZtwgi4Mg/4f473512-82ee-40a7-653f-9c193b6f2b00/original") center;
         background-size: cover;
         padding: 1em 5vw;
-        margin: 135px 0 0 0;
+        margin: 129px 0 0 0;
         width: 100vw;
         height: 20vh;
         color: white;
@@ -251,11 +250,10 @@
     <a href="shopping.html" class="w3-bar-item w3-button" onclick="myFunction()">Shopping List</a>
 </div>
 
-<div class="carrousel">
+<div class="carrousel" id="galleryImg">
     <!-- Carrousel -->
-    <div class="content">
-        <h1>Sweet Potato and Chick Pea Curry</h1>
-        <button class="btn button" onclick="window.location = 'recipe.html?id=1'">COOK NOW</button></a>
+    <div class="content" id="gallery">
+        <!--CAROUSEL CONTENT-->
     </div>
     <div class="carrousel-bg"></div>
 </div>
@@ -341,6 +339,7 @@
     <p class="w3-medium">Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
 </footer>
 <script src="Questionaire.js"></script>
+<script src="Carousel.js"></script>
 <script>
     // Used to toggle the menu on small screens when clicking on the menu button
     function myFunction() {
