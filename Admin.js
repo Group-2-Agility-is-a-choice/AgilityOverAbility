@@ -1,20 +1,21 @@
 function showAllRecipes(){
     fetch("backend/?searchRecipes&key=" + getCookie('jack')).then((rtn)=>{
         rtn.json().then((data)=>{
-            let adminRecipeList = "<table style='list-style:none;'><tr><th>Title</th><th>Edit</th><th>Delete</th></tr>";
-            data.seachRecipes.foreach((item)=>{
-                adminRecipeList += `<tr><td>${item.Name}</td><td><button onclick='editbutton()'  data-id = "${item.RecipeID}"> Edit </button> </td><td><button onclick='deleteButton()' class = "btn btn-primary" data-id = "${item.RecipeID}"> Delete</button></td> </tr>`;
+            let adminRecipeList = "<table style='list-style:none; width: 100%'><tr><th>Title</th><th>Edit</th><th>Delete</th></tr>";
+            data?.forEach((item)=>{
+                adminRecipeList += `<tr><td>${item.Name}</td><td><button id="editBtn" onclick='editbutton()'  data-id = "${item.RecipeID}"> Edit </button> </td><td><button  id="deleteBtn" onclick='deleteButton(this)' data-id = "${item.RecipeID}">Delete</button></td> </tr>`;
             }); 
             adminRecipeList += `</table>`;  
-            document.getElementById("editRecipes").innerHTML = recipeList; 
+            document.getElementById("getRecipes").innerHTML = adminRecipeList; 
         })
 
     });
 }
 
 function editbutton(){
-    var modal = document.getElementById("myModal");
+    var modal = document.getElementById("editModal");
     modal.style.display = "block";
+    //modal.innerHTML = ;
 }
 
 
@@ -26,15 +27,19 @@ function passEdit(RecipeID){
     })
 }
 
-function deleteButton(){
-    var modal = document.getElementById(" MODAL NAME ");
+function deleteButton(id){
+    var modal = document.getElementById("deleteModal");
     modal.style.display = "block";
+    modal.setAttribute("data-id", id.getAttribute('data-id'));
 }
 
-function passDelete(RecipeID){
-    let recipeDelete = "";
-    recipeDelete += "&recipeDelete=" + RecipeID;
-    fetch("backend/?deleteRecipe" + recipeDelete).then((rtn)=>{
+function deleteRecipe(){
+    let id = document.getElementById("deleteModal").getAttribute('data-id')
+    fetch("backend/?deleteRecipe&RecipeID="+id).then((rtn)=>{
+        rtn.text().then((data)=>{
+            let id = document.getElementById("deleteModal").style.display = 'none';
+            showAllRecipes();
+        })
     })
 }
 

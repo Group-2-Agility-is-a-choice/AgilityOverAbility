@@ -124,9 +124,23 @@ p,li {
   .modal-body {padding: 2px 16px;}
 
   
-  #myBtn{
+  #addBtn{
     background-color: #3E5641;
     font-family: 'Bungee Inline', cursive;
     color:#FFFFFF;
     border:#3E5641; 
+  }
+    
+  #editBtn{
+    background-color: #3E5641;
+    font-family: 'Bungee Inline', cursive;
+    color:#FFFFFF;
+    border:#3E5641; 
+  }
+    
+  #deleteBtn{
+    background-color: #f44336;
+    font-family: 'Bungee Inline', cursive;
+    color:#FFFFFF;
+    border:#f44336; 
   }
