@@ -8,7 +8,7 @@ class PDF extends FPDF
     function RecipeTitle($title)
     {
         $this->AddFont('BungeeInline', '', 'BungeeInline-Regular.php');
-        $this->SetFont('BungeeInline', '', 30);
+        $this->SetFont('BungeeInline', '', 25);
         // Move to the right
         $this->Cell(80);
         // Title
@@ -84,7 +84,7 @@ function callback(){
     $pdf->Ingredients($ingredients);
     $im = imagecreatefromstring(file_get_contents($recipeDetails[0]["Image"]));
     $pdf->GDImage($im, 85, 33, 100, 100);
-    $pdf->Ln(20);
+    $pdf->Ln(30);
     $pdf->SetFont('SegoeUI', '', 16);
     $pdf->Cell(0, 10, "Instructions:", 0, 1);
     $pdf->Ln(2.5);
