@@ -22,8 +22,8 @@ function callback(){
     } 
 
     return [
-        "content-type" => "application/json",
-        "content" => json_encode($authenticated, JSON_PRETTY_PRINT)
+        "content-type" => "text/txt",
+        "content" => $authenticated
     ];
 
 }
