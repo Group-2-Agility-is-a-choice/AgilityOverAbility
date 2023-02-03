@@ -64,3 +64,12 @@ function getCookie(cname) {
     return "";
 }
 // https://www.w3schools.com/js/js_cookies.asp
+
+
+
+fetch("backend/?authenticate&sessionToken=" + getCookie("Jeffery")).then((dta)=>{
+    dta.text().then((val)=>{
+        if (val === "no")
+            window.location.replace("login.html");
+    })
+})
