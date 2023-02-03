@@ -14,6 +14,32 @@ function getRecipe(id) {
             document.getElementById("serves").setAttribute("value", data.recipeDetails[0].ServingAmount);
             // display image
             document.getElementById("img").src = data.recipeDetails[0].Image;
+            // display reviews
+            fetch("backend/?getReviews&RecipeID=" + id).then((rtn) => {
+                rtn.json().then((data1) => {
+                    let reviewList = "";
+                    data1.forEach((review) => {
+                        reviewList += `<div class="comment-card" data-review="${encodeURIComponent(JSON.stringify(review))}">
+                    <div class="content">
+                        <h5>${review.Title} - <b>${'⭐'.repeat(review.Rating)}</b></h5>
+                        <sub>${review.Content}</sub>
+                    </div>
+                    <div>
+                        <img src="${review.Image}" alt="${review.Title}">
+                    </div>
+                </div>`;
+                    })
+                    document.getElementById("reviews").innerHTML = reviewList;
+                    for (let card of document.getElementsByClassName("comment-card")) {
+                        card.onclick = ()=>{
+                            let review = JSON.parse(decodeURIComponent(card.getAttribute("data-review")));
+                            document.getElementById("modal_image").setAttribute("src", review.Image);
+                            document.getElementById("modal_image").setAttribute("alt", review.Title);
+                            document.getElementById("myModal").style.display = "block";
+                        }
+                    }
+                })
+            });
             let ingredientsList = "<ul>";
             shoppingList = `{`;
             // display ingredients
@@ -98,4 +124,8 @@ function addList(id) {
             }
         })
     });
+}
+
+function closeButton(){
+    document.getElementById("myModal").style.display = "none";
 }
