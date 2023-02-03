@@ -53,7 +53,7 @@ function passGoods(){
     urlBuilder += "&SweetOrSavoury=" + ((!(document.getElementById("sweet").checked)) ? "1" : "0");
     fetch(urlBuilder).then((rtn)=>{
         rtn.json().then((data)=>{
-            if (data.length >= 0) {
+            if (data.length > 0) {
                 document.getElementById("answerHead").style.backgroundImage = `url("${data[0]?.Image}")`
                 document.getElementById("answerHead").setAttribute('data-id', data[0]?.RecipeID)
                 document.getElementById("answerHead").innerHTML = `<div class="content">
@@ -73,7 +73,8 @@ function passGoods(){
                 });
                 document.getElementById("other-choices").innerHTML = alternates;
             } else {
-                // todo: handle case when no results found
+                // todo: handle case when no results found question - card - answer
+                document.getElementById("question-card-answer").innerHTML = "Sorry, there's currently no recipes available! Come back later and we may have dished up some more!"
             }
             document.getElementById('question-card-answer').setAttribute("data-active","active");
         })
@@ -105,38 +106,4 @@ function checkAvoids(q) {
     }
 }
 
-// CAROUSEL FUNCTION
 
-//function to get recipe and display to a carousel
-function carouselContents() {
-
-    fetch("backend/?getCarouselRecipes").then((rtn)=>{rtn.json().then((data)=>{
-        for (let i = 0; i < 3; i++) {
-            if (i == 0) {
-                document.getElementById("gallery").innerHTML += 
-                `
-                    <div class="carousel-item active content carrousel-bg carouselImg">
-                        <img src="${data[0].Image}" class="d-block w-100" alt="picture of ${data[0].Name}">
-                        <div class="carousel-caption">
-                            <h1>${data[0].Name}</h1>
-                            <button class="btn button" onclick="window.location = 'recipe.html?id=${data[0].RecipeID}'">COOK NOW</button></a>
-                        </div>
-                        </div>
-                    </div>
-                `
-            }
-            else {
-                document.getElementById("gallery").innerHTML += 
-                `
-                    <div class="carousel-item content carrousel-bg carouselImg">
-                        <img src="${data[i].Image}" class="d-block w-100" alt="picture of ${data[i].Name}">
-                        <div class="carousel-caption">
-                            <h1>${data[i].Name}</h1>
-                            <button class="btn button" onclick="window.location = 'recipe.html?id=${data[i].RecipeID}'">COOK NOW</button></a>
-                        </div>
-                    </div>
-                `
-            }
-        }
-    })});
-}

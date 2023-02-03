@@ -10,9 +10,9 @@
         z-index: 1;
     }
 
-    .carrouselImg {
+    .carrousel {
         /* background: url("https://imagedelivery.net/6wTLslqHIfbRpGZtwgi4Mg/4f473512-82ee-40a7-653f-9c193b6f2b00/original") center; */
-        /* background-size: cover;*/
+        background-size: 100%;
         padding: 1em 5vw;
         margin: 135px 0 0 0;
         width: 100vw;
@@ -75,8 +75,8 @@
         margin: 1em auto;
     }
     .question-card:nth-of-type(2) {
-        background: #9ea93fcc;
-        color: #e84d4d;
+        background: #e84d4d;
+        color: #2b3b2d;
         border: #3E5641 2px solid;
     }
 
@@ -249,44 +249,13 @@
     <a href="shopping.html" class="w3-bar-item w3-button" onclick="myFunction()">Shopping List</a>
 </div>
 
-<!-- CAROUSEL -->
-<div id="carouselDisplay" class="carousel slide" data-bs-ride="carousel">
-    <div class="carousel-inner" id="gallery">
+<div class="carrousel" id="galleryImg">
+    <!-- Carrousel -->
+    <div class="content" id="gallery">
+        <!--CAROUSEL CONTENT-->
     </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselDisplay" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-      </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#carouselDisplay" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-      </button>
-    </button>
-  </div>
-
-<!---
-<div id="carouselExample" class="carousel slide">
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <img src="https://fastly.picsum.photos/id/766/2000/1000.jpg?hmac=akvQRe_0VQc8e8mMbIqPPAzySwL1IDIF-NX2EmIa198" class="d-block w-100" alt="...">
-      </div>
-      <div class="carousel-item">
-        <img src="https://fastly.picsum.photos/id/367/2000/1000.jpg?hmac=Knx9wC58ybz_59UUh9nZ678elgKUfCQZEG1Lqm_kYZY" class="d-block w-100" alt="...">
-      </div>
-      <div class="carousel-item">
-        <img src="https://fastly.picsum.photos/id/288/2000/1000.jpg?hmac=AoEZEoTOHy8HKR5RLjbXd8Kl9vx8OtxBenoakYMqpGY" class="d-block w-100" alt="...">
-      </div>
-    </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
-  </div>
--->
+    <div class="carrousel-bg"></div>
+</div>
 
 <!-- !PAGE CONTENT! -->
 <div class="w3-main">
@@ -369,6 +338,7 @@
     <p class="w3-medium">Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
 </footer>
 <script src="Questionaire.js"></script>
+<script src="Carousel.js"></script>
 <script>
     // Used to toggle the menu on small screens when clicking on the menu button
     function myFunction() {
@@ -379,9 +349,6 @@
             x.className = x.className.replace(" w3-show", "");
         }
     }
-
-    // Load contents of the carousel
-    carouselContents()
 
     // When the user clicks anywhere outside of the modal, close it
     var modal = document.getElementById('ticketModal');
