@@ -135,5 +135,5 @@ function submitReview(){
 }
 
 function starInput() {
-    document.getElementById('starReview').innerHTML = `<b class="text-warning">${'⭐'.repeat(document.getElementById("spice").value)}</b><b>${'⭐'.repeat(5 - (document.getElementById("star").value))}</b>`;
+    document.getElementById('starReview').innerHTML = `<b class="text-warning">${'⭐'.repeat(document.getElementById("spice").value)}</b><b>${'⭐'.repeat((document.getElementById("star").value))}</b>`;
 }
