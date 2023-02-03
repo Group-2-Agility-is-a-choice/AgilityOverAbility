@@ -5,6 +5,79 @@
 <meta name="theme-color" content="#3e5641"/>
 <link rel="apple-touch-icon" href="icons/apple-touch.png">
 <style>
+
+    /* The Modal (background) */
+    .modal {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        padding-top: 200px; /* Location of the box */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgb(0,0,0); /* Fallback color */
+        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    }
+
+    /* Modal Content */
+    .modal-content {
+        position: relative;
+        background-color:#FFFFFF;
+        margin: auto;
+        padding: 0;
+        border: 1px solid #888;
+        max-width: 40% !important;
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+        -webkit-animation-name: animatetop;
+        -webkit-animation-duration: 0.4s;
+        animation-name: animatetop;
+        animation-duration: 0.4s
+    }
+#modal_image {
+    max-height: 50vh;
+    width: fit-content;
+    margin: auto;
+}
+.modal-body {
+    display: flex;
+}
+    /* Add Animation */
+    @-webkit-keyframes animatetop {
+        from {top:-300px; opacity:0}
+        to {top:0; opacity:1}
+    }
+
+    @keyframes animatetop {
+        from {top:-300px; opacity:0}
+        to {top:0; opacity:1}
+    }
+
+    /* The Close Button */
+    .close {
+        color: white;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: #000;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    .modal-header {
+        padding: 2px 16px;
+        background-color:#628968;
+        color: white;
+    }
+
+    .modal-body {padding: 2px 16px;}
+
+
     .carrousel > .content {
         position: absolute;
         z-index: 1;
@@ -56,7 +129,7 @@
     }
 
     .question-card {
-        background: #3E5641cc;
+        background: #5b725ecc;
         color: #fff;
         border: #3E5641 2px solid;
         border-radius: 1em;
@@ -74,7 +147,7 @@
         margin: 1em auto;
     }
     .question-card:nth-of-type(2) {
-        background: #e84d4d;
+        background: #f88e8e;
         color: #2b3b2d;
         border: #3E5641 2px solid;
     }
@@ -102,7 +175,7 @@
     .comments {
         display: grid;
         grid-template-columns: repeat(5, 1fr);
-        gap: 1em;
+        gap: 0 1em;
         padding-right: 1em;
         grid-auto-rows: 0;
         overflow: hidden;
@@ -287,7 +360,7 @@
             <h2>What kind of meal are we looking for?</h2>
             <div>
                 <input onclick="checkSavour()" id="sweet" checked name="savour" type="radio" value="0"> <label for="sweet">A Sweet Treat?</label>
-                <input onclick="checkSavour()" id="savoury" name="savour" type="radio" value="1"> <label for="savoury">A Savours Meal?</label>
+                <input onclick="checkSavour()" id="savoury" name="savour" type="radio" value="1"> <label for="savoury">A Savoury Meal?</label>
             </div>
             <div id="spiceOmeter" style="display: none">
                 <label for="spice">How Spicy?</label>
@@ -299,32 +372,30 @@
         <div class="question-card" id="question-card-answer">
             <div class="res-head" id="answerHead" onclick="window.location = 'recipe.html?id=' + this.getAttribute('data-id')" data-id="0">
             </div>
-<!--            Comments system not implemented
             <h4>What does everyone think of this?</h4>
             <div class="comments">
-                <div class="comment-card">
-                    <div class="content">
-                        <h5>{{name name}} - <b>⭐⭐⭐⭐</b></h5>
-                        <sub>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium consectetur delectus dolorem dolores magni possimus tenetur unde.</sub>
-                    </div>
-                </div>
-                <div class="comment-card">
-                    <div class="content">
-                        <h5>{{name name}} - <b>⭐⭐⭐⭐</b></h5>
-                        <sub>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium consectetur delectus dolorem dolores magni possimus tenetur unde.</sub>
-                    </div>
-                </div>
-                <div class="comment-card">
-                    <div class="content">
-                        <h5>{{name name}} - <b>⭐⭐⭐⭐</b></h5>
-                        <sub>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium consectetur delectus dolorem dolores magni possimus tenetur unde.</sub>
-                    </div>
-                </div>
-            </div>-->
+
+            </div>
             <h4>Looking for something else?</h4>
             <div class="other-choices" id="other-choices">
             </div>
             <button class="btn button" onclick="document.getElementById('question-card-answer').removeAttribute('data-active');document.getElementById('question-card-have').setAttribute('data-active','active');">RESTART</button>
+        </div>
+    </div>
+    <div id="myModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close" onclick="closeButton()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <img src="" id="modal_image" alt="">
+                <div>
+                    <h5 id="modal_stars"></h5>
+                    <h4 id="modal_title"></h4>
+                    <p id="modal_content"></p>
+                </div>
+            </div>
         </div>
     </div>
 </div>

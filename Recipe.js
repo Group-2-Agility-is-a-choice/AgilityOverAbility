@@ -13,6 +13,32 @@ function getRecipe(id) {
             document.getElementById("serves").setAttribute("value", data.recipeDetails[0].ServingAmount);
             // display image
             document.getElementById("img").src = data.recipeDetails[0].Image;
+            // display reviews
+            fetch("backend/?getReviews&RecipeID=" + id).then((rtn) => {
+                rtn.json().then((data1) => {
+                    let reviewList = "";
+                    data1.forEach((review) => {
+                        reviewList += `<div class="comment-card" data-review="${encodeURIComponent(JSON.stringify(review))}">
+                    <div class="content">
+                        <h5>${review.Title} - <b>${'⭐'.repeat(review.Rating)}</b></h5>
+                        <sub>${review.Content}</sub>
+                    </div>
+                    <div>
+                        <img src="${review.Image}" alt="${review.Title}">
+                    </div>
+                </div>`;
+                    })
+                    document.getElementById("reviews").innerHTML = reviewList;
+                    for (let card of document.getElementsByClassName("comment-card")) {
+                        card.onclick = ()=>{
+                            let review = JSON.parse(decodeURIComponent(card.getAttribute("data-review")));
+                            document.getElementById("modal_image").setAttribute("src", review.Image);
+                            document.getElementById("modal_image").setAttribute("alt", review.Title);
+                            document.getElementById("myModal").style.display = "block";
+                        }
+                    }
+                })
+            });
             let ingredientsList = "<ul>";
             // display ingredients
             let num = 0;
@@ -113,3 +139,30 @@ function addList() {
       //console.log("Display "+stringd);
   }
 }
+
+function closeButton(){
+    document.getElementById("myModal").style.display = "none";
+}
+
+function submitReview(){
+    review = "backend/?addReview" + `&RecipeID=${chosenRecipe}&Title=`+ document.getElementById("rev-title").value + `&Content=`+ document.getElementById("description").value + `&Rating=` + document.getElementById('star').value + `&Email=` + document.getElementById('email').value;
+    var data = new FormData()
+    data.append('image', document.getElementById('image').files[0])
+    fetch(review, {
+        "method":"POST",
+        "body":data,
+        // headers:{'Content-Type':"application/x-www-form-urlencoded; charset=UTF-8"}
+    })
+}
+
+function starInput() {
+    document.getElementById('starReview').innerHTML = `<b class="text-warning">${'⭐'.repeat(document.getElementById("spice").value)}</b><b>${'⭐'.repeat((document.getElementById("star").value))}</b>`;
+}
+
+// var data = new FormData()
+//         data.append('file', document.getElementById('imageUpload').files[0])
+//         fetch(url, {
+//             "method":"POST",
+//             "body":data,
+//             headers:{'Content-Type':"application/x-www-form-urlencoded; charset=UTF-8"}
+//         });

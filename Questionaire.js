@@ -54,11 +54,37 @@ function passGoods(){
     fetch(urlBuilder).then((rtn)=>{
         rtn.json().then((data)=>{
             if (data.length > 0) {
+                fetch("backend/?getReviews&RecipeID=" + data[0]?.RecipeID).then((fetchRtn)=>{
+                    fetchRtn.json().then((reviwData)=>{
+                        document.getElementsByClassName('comments')[0].innerHTML = "";
+                        reviwData.forEach((review)=>{
+                            document.getElementsByClassName('comments')[0].innerHTML +=
+                                `<div class="comment-card" data-review="${encodeURIComponent(JSON.stringify(review))}">
+                    <div class="content">
+                        <h5>${review.Title} - <b>${'⭐'.repeat(review.Rating)}</b></h5>
+                        <sub>${review.Content}</sub>
+                    </div>
+                </div>`;
+                        })
+                        for (let commentCard of document.getElementsByClassName('comment-card')) {
+                            commentCard.onclick = ()=>{
+                                let review = JSON.parse(decodeURIComponent(commentCard.getAttribute('data-review')));
+                                document.getElementById("modal_image").setAttribute("src",review.Image);
+                                document.getElementById("modal_image").setAttribute("alt",review.Title);
+                                document.getElementById("modal_title").innerHTML = `${review.Title}`;
+                                document.getElementById("modal_content").innerHTML = `${review.Content}`;
+                                document.getElementById("modal_stars").innerHTML = `<b>${'⭐'.repeat(review.Rating)}</b>`;
+                                const modal = document.getElementById("myModal");
+                                modal.style.display = "block";
+                            }
+                        }
+                    })
+                })
                 document.getElementById("answerHead").style.backgroundImage = `url("${data[0]?.Image}")`
                 document.getElementById("answerHead").setAttribute('data-id', data[0]?.RecipeID)
                 document.getElementById("answerHead").innerHTML = `<div class="content">
                     <h2>${data[0]?.Name}</h2>
-                    <h5>Serves: ${data[0]?.ServingAmount} - <b class="text-danger">${'🌶'.repeat(data[0]?.Spicelevel)}</b><b>${'🌶'.repeat(3 - (data[0]?.Spicelevel))}</b></h5>
+                    <h5>Serves: ${data[0]?.ServingAmount} Spice level: <b class="text-danger">${'🌶'.repeat(data[0]?.Spicelevel)}</b><b>${'🌶'.repeat(3 - (data[0]?.Spicelevel))}</b> Rating: <b class="text-warning">${'⭐'.repeat(data[0]?.RatingAVG)}</b></h5>
                 </div><div class="answerHeadCover"></div>`;
                 let alternates = "";
                 if (data.length === 1)
@@ -104,6 +130,8 @@ function checkAvoids(q) {
         else
             ownedEL.parentElement.style.display = 'none';
     }
+
 }
-
-
+function closeButton(){
+    document.getElementById("myModal").style.display = "none";
+}
