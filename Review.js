@@ -2,8 +2,16 @@ function allReviews(){
     fetch("backend/?getReviews").then((rtn)=>{
         rtn.json().then((data)=>{
             let reviewList = "";
+            let sectionHeader = "";
             data?.forEach((item)=>{
-                reviewList += `<div class=" reviewCard card mb-3 border border-dark" style="max-width: 800px;" ><div class="row no-gutters">
+                if(sectionHeader!== item.RecipeID){
+                    reviewList+= 
+                    `<h2>${item.Name}</h2>`
+                    sectionHeader = item.RecipeID;
+                }
+
+                reviewList += `
+                <div class=" reviewCard card mb-3 border border-dark" style="max-width: 800px;" ><div class="row no-gutters">
                 <div class="col-md-4">
                 <img src="${item.Image.replace('recipeBig', 'recipeSmall')}" style="height:100%;width:100%;" class="card-img" alt="...">
                 </div>
