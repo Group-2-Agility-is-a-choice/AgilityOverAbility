@@ -16,10 +16,14 @@ function callback()
 
         if (isset($_GET['RecipeID'])) {
 
+            $stmt = $pdo->prepare("DELETE FROM `RecipeIngredients` WHERE `RecipeID` = ?");
+            $stmt->execute([$_GET['RecipeID']]);
+            $rtn = $stmt->fetchAll();
+
             $stmt = $pdo->prepare("DELETE FROM `Recipe` WHERE `RecipeID` = ?");
             $stmt->execute([$_GET['RecipeID']]);
             $rtn = $stmt->fetchAll();
-            echo "deleted recipe";
+            
 
             return [
                 "content-type" => "application/json",
