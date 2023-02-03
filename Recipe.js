@@ -131,13 +131,13 @@ function closeButton(){
 }
 
 function submitReview(){
-    review = "backend/?addReview" + `&RecipeID=${chosenRecipe}&Ttile=`+ document.getElementById("title").value + `&Content=`+ document.getElementById("description").value + `&Rating=` + document.getElementById('star').value + `&Email=` + document.getElementById('email').value;
+    review = "backend/?addReview" + `&RecipeID=${chosenRecipe}&Title=`+ document.getElementById("rev-title").value + `&Content=`+ document.getElementById("description").value + `&Rating=` + document.getElementById('star').value + `&Email=` + document.getElementById('email').value;
     var data = new FormData()
-    data.append('file', document.getElementById('image')).files([0])
+    data.append('image', document.getElementById('image').files[0])
     fetch(review, {
         "method":"POST",
         "body":data,
-        headers:{'Content-Type':"application/x-www-form-urlencoded; charset=UTF-8"}
+        // headers:{'Content-Type':"application/x-www-form-urlencoded; charset=UTF-8"}
     })
 }
 
