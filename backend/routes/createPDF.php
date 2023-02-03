@@ -7,7 +7,8 @@ class PDF extends FPDF
     // Page header
     function RecipeTitle($title)
     {
-        $this->SetFont('Times', 'B', 30);
+        $this->AddFont('BungeeInline', '', 'BungeeInline-Regular.php');
+        $this->SetFont('BungeeInline', '', 30);
         // Move to the right
         $this->Cell(80);
         // Title
@@ -18,18 +19,17 @@ class PDF extends FPDF
 
     function Ingredients($ingredients)
     {
-        $this->SetFont('Times', 'I', 16);
+        $this->AddFont('SegoeUII','','segoeuii.php');
+        $this->SetFont('SegoeUII', '', 16);
 
         $this->Cell(0, 10, "Ingredients:", 0, 1);
         $this->Ln(2.5);
 
-        $this->SetFont('Times', 'I', 12);
+        $this->SetFont('SegoeUII', '', 12);
 
         for ($x = 0; $x < sizeof($ingredients); $x++)
             $this->Cell(0, 10, implode(" ", $ingredients[$x]), 0, 1);
 
-        // Line break
-        $this->Ln(20);
     }
 
     // Page footer
@@ -38,7 +38,7 @@ class PDF extends FPDF
         // Position at 1.5 cm from bottom
         $this->SetY(-15);
         // Arial italic 8
-        $this->SetFont('Times', 'I', 8);
+        $this->SetFont('SegoeUII', '', 8);
         // Page number
         $this->Cell(0, 10, 'Little Green Larder', 0, 0, 'C');
     }
@@ -78,13 +78,18 @@ function callback(){
     // Instanciation of inherited class
     $pdf = new PDF();
     $pdf->AliasNbPages();
+    $pdf->AddFont('SegoeUI','','segoeui.php');
     $pdf->AddPage();
     $pdf->RecipeTitle($recipeDetails[0]["Name"]);
     $pdf->Ingredients($ingredients);
     $im = imagecreatefromstring(file_get_contents($recipeDetails[0]["Image"]));
-    $pdf->GDImage($im, 10, 10, 32, 32);
-    $pdf->SetFont('Times', '', 12);
+    $pdf->GDImage($im, 85, 33, 100, 100);
+    $pdf->Ln(20);
+    $pdf->SetFont('SegoeUI', '', 16);
     $pdf->Cell(0, 10, "Instructions:", 0, 1);
+    $pdf->Ln(2.5);
+    $pdf->SetFont('SegoeUI', '', 12);
+    $recipeDetails[0]["Instructions"] = str_replace("–", "-", $recipeDetails[0]["Instructions"]);
     $pdf->MultiCell(0,10,$recipeDetails[0]["Instructions"],0);
     return [
         "content-type" => "application/pdf",
