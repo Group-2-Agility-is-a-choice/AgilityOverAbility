@@ -1,5 +1,5 @@
 function showAllRecipes(){
-    fetch("backend/?searchRecipes&key=" + getCookie('jack')).then((rtn)=>{
+    fetch("backend/?searchRecipes&sessionToken=" + getCookie('Jeffery')).then((rtn)=>{
         rtn.json().then((data)=>{
             let adminRecipeList = "<table style='list-style:none; width: 100%'><tr><th>Title</th><th>Edit</th><th>Delete</th></tr>";
             data?.forEach((item)=>{
@@ -166,7 +166,7 @@ function deleteButton(id){
 
 function deleteRecipe(){
     let id = document.getElementById("deleteModal").getAttribute('data-id')
-    fetch("backend/?deleteRecipe&RecipeID="+id).then((rtn)=>{
+    fetch("backend/?deleteRecipe&RecipeID="+id + "&sessionToken=" + getCookie('Jeffery')).then((rtn)=>{
         rtn.text().then((data)=>{
             let id = document.getElementById("deleteModal").style.display = 'none';
             showAllRecipes();
