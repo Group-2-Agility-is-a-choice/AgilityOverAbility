@@ -131,9 +131,24 @@ function closeButton(){
 }
 
 function submitReview(){
-    review = "&addReview" + `&RecipeID=${chosenRecipe}`+ document.getElementById("title") + `&RecipeID=${chosenRecipe}`+ document.getElementById("description") + `&RecipeID=${chosenRecipe}`+ document.getElementById("image");
+    review = "backend/?addReview" + `&RecipeID=${chosenRecipe}&Ttile=`+ document.getElementById("title").value + `&Content=`+ document.getElementById("description").value + `&Rating=` + document.getElementById('star').value + `&Email=` + document.getElementById('email').value;
+    var data = new FormData()
+    data.append('file', document.getElementById('image')).files([0])
+    fetch(review, {
+        "method":"POST",
+        "body":data,
+        headers:{'Content-Type':"application/x-www-form-urlencoded; charset=UTF-8"}
+    })
 }
 
 function starInput() {
     document.getElementById('starReview').innerHTML = `<b class="text-warning">${'⭐'.repeat(document.getElementById("spice").value)}</b><b>${'⭐'.repeat((document.getElementById("star").value))}</b>`;
 }
+
+// var data = new FormData()
+//         data.append('file', document.getElementById('imageUpload').files[0])
+//         fetch(url, {
+//             "method":"POST",
+//             "body":data,
+//             headers:{'Content-Type':"application/x-www-form-urlencoded; charset=UTF-8"}
+//         });
