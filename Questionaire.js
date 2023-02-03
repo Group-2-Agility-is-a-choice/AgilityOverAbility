@@ -84,7 +84,7 @@ function passGoods(){
                 document.getElementById("answerHead").setAttribute('data-id', data[0]?.RecipeID)
                 document.getElementById("answerHead").innerHTML = `<div class="content">
                     <h2>${data[0]?.Name}</h2>
-                    <h5>Serves: ${data[0]?.ServingAmount} - <b class="text-danger">${'🌶'.repeat(data[0]?.Spicelevel)}</b><b>${'🌶'.repeat(3 - (data[0]?.Spicelevel))}</b><b class="text-warning">${'⭐'.repeat(data[0]?.RatingAVG)}</b></h5>
+                    <h5>Serves: ${data[0]?.ServingAmount} Spice level: <b class="text-danger">${'🌶'.repeat(data[0]?.Spicelevel)}</b><b>${'🌶'.repeat(3 - (data[0]?.Spicelevel))}</b> Rating: <b class="text-warning">${'⭐'.repeat(data[0]?.RatingAVG)}</b></h5>
                 </div><div class="answerHeadCover"></div>`;
                 let alternates = "";
                 if (data.length === 1)
