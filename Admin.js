@@ -84,7 +84,7 @@ function removeEdit(id){
 }
 
 function confirmEdit() {
-    if (document.getElementById('editModal').getAttribute("data-id") == 'recipeID') {
+    if (document.getElementById('editModal').getAttribute("data-id") !== 'recipeID') {
         let url = "backend/?editRecipe";
         for (let inputField of document.getElementsByClassName("input-quantity")) {
             url += "&Quantity[]=" + encodeURIComponent(inputField.value);
@@ -99,16 +99,15 @@ function confirmEdit() {
         url += `&ServingAmount=${encodeURIComponent(document.getElementById('eserve').value)}`
         url += `&SweetOrSavoury=${encodeURIComponent(document.getElementById('esavor').checked ? 1 : 0)}`
         url += `&Name=${encodeURIComponent(document.getElementById('etitle').value)}`
-        url += `&Instructions=${encodeURIComponent(document.getElementById('emethod').innerHTML)}`
+        url += `&Instructions=${encodeURIComponent(document.getElementById('emethod').value)}`
         url += `&sessionToken=${encodeURIComponent(getCookie("Jeffery"))}`
         url += `&RecipeID=${encodeURIComponent(document.getElementById('editModal').getAttribute("data-id"))}`
 
         var data = new FormData()
-        data.append('file', document.getElementById('imageUpload').files[0])
+        data.append('image', document.getElementById('imageUpload').files[0])
         fetch(url, {
             "method":"POST",
             "body":data,
-            headers:{'Content-Type':"application/x-www-form-urlencoded; charset=UTF-8"}
         });
     }
     document.getElementById('editModal').style.display='none';
@@ -159,14 +158,6 @@ function addEdit() {
   document.getElementById("eingredients").innerHTML = ingredientHTML;
 }
 
-function passEdit(RecipeID){
-    let edit = "&content=";
-        edit += encodeURIComponent(document.getElementById("editRecipes").innerHTML);
-        edit += "&recipeEdit=" + RecipeID;
-    fetch("backend/?editRecipe" +edit).then((rtn)=>{
-    })
-}
-
 function deleteButton(id){
     var modal = document.getElementById("deleteModal");
     modal.style.display = "block";
@@ -192,26 +183,19 @@ function confirmAdd() {
   //add items to DB
 }
 
-function passRecipe(){
-    let addRecipe = "";
-    addRecipe += encodeURIComponent(document.getElementById("addRecipe").innerHTML);
-    addRecipe += "&addRecipe=";
-    fetch("backend/?deleteRecipe").then((rtn)=>{
-    })
-}
-
-function getCookie(cookie){
-    let name = "Jeffery =";
-    let ca = document.cookie.split(';');
-    for(let i = 0; i < ca.length; i++) {
+function getCookie(cname) {
+    let name = cname + "=";
+    let decodedCookie = decodeURIComponent(document.cookie);
+    let ca = decodedCookie.split(';');
+    for(let i = 0; i <ca.length; i++) {
         let c = ca[i];
         while (c.charAt(0) == ' ') {
             c = c.substring(1);
         }
-    if (c.indexOf(name) == 0) {
-        return;
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
         }
     }
-    return "SOME ERROR FROM BACKEND";
+    return "";
 }
 // https://www.w3schools.com/js/js_cookies.asp
