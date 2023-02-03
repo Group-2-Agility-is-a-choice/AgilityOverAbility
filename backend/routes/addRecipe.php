@@ -30,6 +30,7 @@ function callback()
         $stmt = $pdo->prepare("INSERT INTO `Recipe`( `Name`, `SpiceLevel`, `Instructions`, `ServingAmount`, `SweetOrSavoury` ,`Image`) VALUES (?,?,?,?,?,?)");
         $stmt->execute([$_GET['Name'],$_GET['SpiceLevel'],$_GET['Instructions'],$_GET['ServingAmount'],$_GET['SweetOrSavoury'], json_decode($Image['content'])->CDN->variants[0]]);
         $rtn = $stmt->fetchAll();
+
        
 
         
