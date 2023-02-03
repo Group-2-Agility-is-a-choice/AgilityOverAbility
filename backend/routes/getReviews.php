@@ -15,7 +15,7 @@ function callback()
     }
     else{
         
-        $stmt = $pdo->prepare("SELECT * FROM Review");
+        $stmt = $pdo->prepare("SELECT * FROM Review ORDER BY RecipeID");
         $stmt->execute([]);
         $rtn = $stmt->fetchAll();
 
