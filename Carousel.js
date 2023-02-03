@@ -21,9 +21,9 @@ function galleryChange(specificData)
     document.getElementById("gallery").innerHTML = 
     `
         <h1>${specificData.Name}</h1>
-        <button class="btn button" onclick="prev()">🢀</button>
+        <button class="btn button" style="background-color: transparent;" onclick="prev()">🢀</button>
         <button class="btn button" onclick="window.location = 'recipe.html?id=${specificData.RecipeID}'">COOK NOW</button></a>
-        <button class="btn button" onclick="next()">🢂</button>
+        <button class="btn button" style="background-color: transparent;" onclick="next()">🢂</button>
     `;
     document.getElementById("galleryImg").style.background = "url(" + specificData.Image + ") center";
 }
