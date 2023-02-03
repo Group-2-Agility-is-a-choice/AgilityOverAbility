@@ -17,6 +17,7 @@ let current_ingredients= [];
 let num = 0;
 
 function editbutton(id){
+    document.getElementById("editModal").setAttribute("data-id", id)
     document.getElementById('editModal').style.display= "block";
     current_ingredients = [];
 
@@ -84,76 +85,43 @@ function removeEdit(id){
 }
 
 function confirmEdit() {
+    let url = "";
     if (document.getElementById('editModal').getAttribute("data-id") !== 'recipeID') {
-        let url = "backend/?editRecipe";
-        for (let inputField of document.getElementsByClassName("input-quantity")) {
-            url += "&Quantity[]=" + encodeURIComponent(inputField.value);
-        }
-        for (let inputField of document.getElementsByClassName("input-unit")) {
-            url += "&Unit[]=" + encodeURIComponent(inputField.value);
-        }
-        for (let inputField of document.getElementsByClassName("input-ingredient")) {
-            url += "&Ingredient_Name[]=" + encodeURIComponent(inputField.value);
-        }
-        url += `&SpiceLevel=${encodeURIComponent(document.getElementById('espice').value)}`
-        url += `&ServingAmount=${encodeURIComponent(document.getElementById('eserve').value)}`
-        url += `&SweetOrSavoury=${encodeURIComponent(document.getElementById('esavor').checked ? 1 : 0)}`
-        url += `&Name=${encodeURIComponent(document.getElementById('etitle').value)}`
-        url += `&Instructions=${encodeURIComponent(document.getElementById('emethod').value)}`
-        url += `&sessionToken=${encodeURIComponent(getCookie("Jeffery"))}`
+        url = "backend/?editRecipe";
         url += `&RecipeID=${encodeURIComponent(document.getElementById('editModal').getAttribute("data-id"))}`
-
-        var data = new FormData()
-        data.append('image', document.getElementById('imageUpload').files[0])
-        fetch(url, {
-            "method":"POST",
-            "body":data,
-        });
+    } else {
+        url = "backend/?addRecipe";
     }
+    for (let inputField of document.getElementsByClassName("input-quantity")) {
+        url += "&Quantity[]=" + encodeURIComponent(inputField.value);
+    }
+    for (let inputField of document.getElementsByClassName("input-unit")) {
+        url += "&Unit[]=" + encodeURIComponent(inputField.value);
+    }
+    for (let inputField of document.getElementsByClassName("input-ingredient")) {
+        url += "&Ingredient_Name[]=" + encodeURIComponent(inputField.value);
+    }
+    url += `&SpiceLevel=${encodeURIComponent(document.getElementById('espice').value)}`
+    url += `&ServingAmount=${encodeURIComponent(document.getElementById('eserve').value)}`
+    url += `&SweetOrSavoury=${encodeURIComponent(document.getElementById('esavor').checked ? 1 : 0)}`
+    url += `&Name=${encodeURIComponent(document.getElementById('etitle').value)}`
+    url += `&Instructions=${encodeURIComponent(document.getElementById('emethod').value)}`
+    url += `&sessionToken=${encodeURIComponent(getCookie("Jeffery"))}`
+
+    var data = new FormData()
+    data.append('image', document.getElementById('imageUpload').files[0])
+    fetch(url, {
+        "method":"POST",
+        "body":data,
+    });
     document.getElementById('editModal').style.display='none';
-}
-
-function removeAdd(id){
-  
-  let parsed_ingredients = JSON.parse(jsond_ingredients); //save everything else first or new fields deleted
-  let ingredientHTML = "";
-  current_ingredients = [];
-  num = 0;
-  parsed_ingredients.forEach((item) => {
-      if (id!=item.num) {
-        ingredientHTML += "<input type='number' id='"+num+"Amount' min='0' style='width:50px;' value='"+item.Quantity+"'>";
-        ingredientHTML += "<input type='text' id='"+num+"Unit' style='width:50px;' value='"+item.Unit+"'>";
-        ingredientHTML += "<input type='text' id='"+num+"Name' style='width:200px;' value='"+item.Name+"'>";
-        ingredientHTML += "<button onclick='removeEdit("+num+")' type='button' class='button bg-danger text-light'>Remove</button><br>";
-        let ingredient = {
-          "num": num,
-          "ID": item.IngredientID,
-          "Name": item.Name,
-          "Quantity": item.Quantity,
-          "Unit": item.Unit
-        }
-        num+=1;
-        current_ingredients.push(ingredient);
-      }
-  });
-  jsond_ingredients = JSON.stringify(current_ingredients);
-  document.getElementById("aingredients").innerHTML = ingredientHTML;
-}
-
-function addAdd() {
-  let ingredientHTML = document.getElementById("aingredients").innerHTML;
-  ingredientHTML += "<input type='number' id='"+num+"Amount' min='0' style='width:50px;' value='0' placeholder='0'>";
-  ingredientHTML += "<input type='text' id='"+num+"Unit' style='width:50px;' value='' placeholder=''>";
-  ingredientHTML += "<input type='text' id='"+num+"Name' style='width:200px;' value='' placeholder=''>";
-  ingredientHTML += "<button onclick='removeEdit("+num+")' type='button' class='button bg-danger text-light'>Remove</button><br>";
-  document.getElementById("aingredients").innerHTML = ingredientHTML;
 }
 
 function addEdit() {
   let ingredientHTML = document.getElementById("eingredients").innerHTML;
-  ingredientHTML += "<input type='number' id='"+num+"Amount' min='0' style='width:50px;' value='0' placeholder='0'>";
-  ingredientHTML += "<input type='text' id='"+num+"Unit' style='width:50px;' value='' placeholder=''>";
-  ingredientHTML += "<input type='text' id='"+num+"Name' style='width:200px;' value='' placeholder=''>";
+  ingredientHTML += "<input type='number' class='input-quantity' id='"+num+"Amount' min='0' style='width:50px;' value='0' placeholder='0'>";
+  ingredientHTML += "<input type='text' class='input-unit' id='"+num+"Unit' style='width:50px;' value='' placeholder=''>";
+  ingredientHTML += "<input type='text' class='input-ingredient' id='"+num+"Name' style='width:200px;' value='' placeholder=''>";
   ingredientHTML += "<button onclick='removeEdit("+num+")' type='button' class='button bg-danger text-light'>Remove</button><br>";
   document.getElementById("eingredients").innerHTML = ingredientHTML;
 }
@@ -175,12 +143,10 @@ function deleteRecipe(){
 }
 
 function addRecipe(){
-    document.getElementById("addModal").style.display = "block";
+    document.getElementById("editModal").setAttribute("data-id", "recipeID")
+    document.getElementById("editModal").style.display = "block";
+    document.getElementById("eimg").setAttribute("src", "https://placeholder.com/assets/images/150x150-2-500x500.png")
     current_ingredients = [];
-}
-
-function confirmAdd() {
-  //add items to DB
 }
 
 function getCookie(cname) {
