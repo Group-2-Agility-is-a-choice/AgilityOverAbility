@@ -5,7 +5,7 @@ function passLoginDeets(){
     "password":document.getElementById("pass").value
 }).map(([k,v])=>{return k+"="+v}).join('&')}).then((rtn)=>{
         rtn.json().then((data)=>{
-         setCookie(data.token);
+         setCookie(data.sessionToken);
          window.location.replace("admin.html");
         })
     });
