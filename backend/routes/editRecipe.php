@@ -5,8 +5,9 @@ function callback()
     http_response_code(200);
     $pdo = PDO_config("LGLAdmin", "URlY6qOhsbrXqHr9");
 
-    $stmt = $pdo->prepare("SELECT sessionToken FROM User WHERE AdminID = ?");
-    $stmt->execute([$_GET['AdminID']]);  
+   
+    $stmt = $pdo->prepare("SELECT sessionToken FROM User WHERE sessionToken = ?");
+    $stmt->execute([$_GET['sessionToken']]);  
     $tok = $stmt->fetch();
 
    $tok = implode(" ",$tok);
@@ -62,6 +63,7 @@ function callback()
             "content" => json_encode($rtn, JSON_PRETTY_PRINT)
         ];
     
+
 
     }else{
         $rtn = "error inncorect not all data fields have been filled";
