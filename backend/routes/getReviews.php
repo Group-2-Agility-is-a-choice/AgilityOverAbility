@@ -15,7 +15,7 @@ function callback()
     }
     else{
         
-        $stmt = $pdo->prepare("SELECT * FROM Review ORDER BY RecipeID");
+        $stmt = $pdo->prepare("SELECT Recipe.Name, Review.Title, Review.ReviewID, Review.Content, Review.Rating, Review.RecipeID, Review.Image, Review.Email FROM Recipe INNER JOIN Review ON (Recipe.RecipeID = Review.RecipeID)");
         $stmt->execute([]);
         $rtn = $stmt->fetchAll();
 
